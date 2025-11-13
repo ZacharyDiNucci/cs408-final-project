@@ -54,3 +54,11 @@ Once core functionality is complete, the following features would enhance the pr
 1. **[Stretch Goal 1]** - The first strech goal will be some kind of login system. Most likely this will be a simple Username/password system since no personal data will/should be saved to this application and so we shouldn't need things like 2FA.
 2. **[Stretch Goal 2]** - Additional Army Custimization - Right now my plan for army rules will be a few paragraph fields. However, if I have time I would like to add some more specificity. For example, in many different games you can buy upgrades based on a subfaction. I would love to have something like that. 
 3. **[Stretch Goal 3]** - Additional unit Custimization - In Most Wargames units get a pool of weapons they can take and might cost more to take. in the begining I will have this be a simple paragraph field, however I would like to expand that eventually.
+
+
+## Wireframe
+My current wireframe, I am not 100% sure if I need the get all button but if so that will be on a page linked from the index page which will then share details from the army page and list page, along with a list of all army types, and unit types. Depending on how things go, fields like the unit stats will be individual fields that can be expanded and given more depth. Along with that I might add fields for custom descriptions of fields. For Example Sub Rules might have a description written to say:
+
+    "Select your sub rule before the game and when making your army. You are limited to 1 at a time and cannot change it mid game."
+
+![Project Screenshot](WireFrame.png)
