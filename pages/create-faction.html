@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Faction - Wargame List Builder</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Wargame List Builder</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="factions.html">Factions</a></li>
+        <li><a href="units.html">Units</a></li>
+        <li><a href="lists.html">Army Lists</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div>
+      <h2>Create New Faction</h2>
+      <p>Define a new army faction with its rules and characteristics</p>
+    </div>
+
+    <form>
+      <!-- Basic Information -->
+      <div>
+        <div>
+          <h3>Basic Information</h3>
+        </div>
+        <div>
+          <div>
+            <label for="faction-name">Faction Name *</label>
+            <input type="text" id="faction-name" placeholder="e.g., Imperial Guard, Space Marines" required>
+          </div>
+
+          <div>
+            <label for="faction-description">Description</label>
+            <textarea id="faction-description" placeholder="Brief description of the faction and its playstyle..."></textarea>
+            <small>Optional: Add lore or tactical overview</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Army Rules -->
+      <div>
+        <div>
+          <h3>Army Rule</h3>
+          <p>The core rule that applies to all units in this faction</p>
+        </div>
+        <div>
+          <div>
+            <label for="army-rule-name">Rule Name</label>
+            <input type="text" id="army-rule-name" placeholder="e.g., Combined Arms, And They Shall Know No Fear">
+          </div>
+
+          <div>
+            <label for="army-rule-description">Rule Description</label>
+            <textarea id="army-rule-description" placeholder="Describe how this rule affects gameplay..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detachments Section -->
+      <div>
+        <div>
+          <h3>Detachments</h3>
+          <p>Add subfaction rules and variations (can add more later)</p>
+        </div>
+        <div>
+          <!-- Detachment 1 -->
+          <div>
+            <h4>Detachment 1</h4>
+            <div>
+              <label for="detachment-1-name">Detachment Name</label>
+              <input type="text" id="detachment-1-name" placeholder="e.g., Infantry Company, Armored Regiment">
+            </div>
+
+            <div>
+              <label for="detachment-1-rule">Special Rule</label>
+              <textarea id="detachment-1-rule" placeholder="Special rules or bonuses for this detachment..."></textarea>
+            </div>
+          </div>
+
+          <!-- Detachment 2 -->
+          <div>
+            <h4>Detachment 2 (Optional)</h4>
+            <div>
+              <label for="detachment-2-name">Detachment Name</label>
+              <input type="text" id="detachment-2-name" placeholder="e.g., Fast Attack, Fire Support">
+            </div>
+
+            <div>
+              <label for="detachment-2-rule">Special Rule</label>
+              <textarea id="detachment-2-rule" placeholder="Special rules or bonuses for this detachment..."></textarea>
+            </div>
+          </div>
+
+          <button type="button">+ Add Another Detachment</button>
+        </div>
+      </div>
+
+      <!-- Tags & Keywords -->
+      <div>
+        <div>
+          <h3>Faction Tags</h3>
+          <p>Add keywords to help categorize this faction</p>
+        </div>
+        <div>
+          <div>
+            <label for="faction-tags">Tags (comma-separated)</label>
+            <input type="text" id="faction-tags" placeholder="e.g., Infantry, Vehicles, Elite, Horde, Melee">
+            <small>These can be used for filtering and searching</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div>
+        <div>
+          <div>
+            <button type="submit">Create Faction</button>
+            <a href="./pages/factions.html">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

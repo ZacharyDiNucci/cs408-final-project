@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factions - Wargame List Builder</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Wargame List Builder</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="factions.html">Factions</a></li>
+        <li><a href="units.html">Units</a></li>
+        <li><a href="lists.html">Army Lists</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div>
+      <div>
+        <h2>Factions</h2>
+        <p>Manage your army factions and their rules</p>
+      </div>
+      <div>
+        <a href="create-faction.html">+ Create Faction</a>
+        <a href="list-builder.html">Build Army List</a>
+      </div>
+    </div>
+
+    <!-- Filter/Search Section -->
+    <div>
+      <div>
+        <label for="search">Search Factions</label>
+        <input type="text" id="search" placeholder="Search by name or keyword...">
+      </div>
+    </div>
+
+    <!-- Factions Grid - This will be populated with data later -->
+    <div>
+      
+      <!-- Example Faction Card 1 -->
+      <div>
+        <div>
+          <div>
+            <h3>Imperial Guard</h3>
+            <div>
+              <span>Infantry</span>
+              <span>Vehicles</span>
+            </div>
+          </div>
+          <p>The hammer of the Emperor</p>
+        </div>
+        <div>
+          <p><strong>Army Rule:</strong> Combined Arms - Infantry units within 6" of vehicle units gain +1 to hit</p>
+          <p><strong>Detachments:</strong> 3 available</p>
+          <p><strong>Total Units:</strong> 12</p>
+        </div>
+        <div>
+          <div>
+            <a href="faction-detail.html">View Details</a>
+            <a href="list-builder.html">Build List</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

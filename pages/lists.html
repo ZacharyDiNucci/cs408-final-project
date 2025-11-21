@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Army Lists - Wargame List Builder</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Wargame List Builder</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="factions.html">Factions</a></li>
+        <li><a href="units.html">Units</a></li>
+        <li><a href="lists.html">Army Lists</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div>
+      <div>
+        <h2>Army Lists</h2>
+        <p>Manage your saved army lists</p>
+      </div>
+      <a href="list-builder.html">+ Build New List</a>
+    </div>
+
+    <!-- Message when no factions exist -->
+    <!-- Uncomment this section when there are no factions in the database -->
+    <!--
+    <div>
+      <h3>No Factions Available</h3>
+      <p>You need to create at least one faction before building army lists.</p>
+      <a href="create-faction.html">Create Your First Faction</a>
+    </div>
+    -->
+
+    <!-- Filter Section -->
+    <div>
+      <div>
+        <div>
+          <div>
+            <label for="search-lists">Search Lists</label>
+            <input type="text" id="search-lists" placeholder="Search by name...">
+          </div>
+
+          <div>
+            <label for="filter-faction">Filter by Faction</label>
+            <select id="filter-faction">
+              <option value="">All Factions</option>
+              <option value="imperial-guard">Imperial Guard</option>
+              <option value="space-marines">Space Marines</option>
+              <option value="orks">Orks</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="filter-points">Filter by Point Level</label>
+            <select id="filter-points">
+              <option value="">All Point Levels</option>
+              <option value="500">500 Points</option>
+              <option value="1000">1000 Points</option>
+              <option value="2000">2000 Points</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Army Lists Grid -->
+    <div>
+      
+      <!-- Example List 1 -->
+      <div>
+        <div>
+          <div>
+            <h3>Steel Legion Infantry Company</h3>
+            <span>1000 pts</span>
+          </div>
+          <p>Imperial Guard - Infantry Company Detachment</p>
+        </div>
+        <div>
+          <p><strong>Total Points:</strong> 995 / 1000</p>
+          <p><strong>Total Units:</strong> 8</p>
+          <p><strong>Warlord:</strong> Company Commander</p>
+          <div>
+            <span>Valid ✓</span>
+          </div>
+        </div>
+        <div>
+          <div>
+            <a href="list-detail.html">View List</a>
+            <a href="list-builder.html">Edit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example List 2 -->
+      <div>
+        <div>
+          <div>
+            <h3>Armored Spearhead</h3>
+            <span>2000 pts</span>
+          </div>
+          <p>Imperial Guard - Armored Regiment Detachment</p>
+        </div>
+        <div>
+          <p><strong>Total Points:</strong> 1985 / 2000</p>
+          <p><strong>Total Units:</strong> 12</p>
+          <p><strong>Warlord:</strong> Tank Commander</p>
+          <div>
+            <span>Valid ✓</span>
+          </div>
+        </div>
+        <div>
+          <div>
+            <a href="list-detail.html">View List</a>
+            <a href="list-builder.html">Edit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example List 3 - Invalid -->
+      <div>
+        <div>
+          <div>
+            <h3>Ultramarines Strike Force</h3>
+            <span>2000 pts</span>
+          </div>
+          <p>Space Marines - Gladius Task Force</p>
+        </div>
+        <div>
+          <p><strong>Total Points:</strong> 2045 / 2000</p>
+          <p><strong>Total Units:</strong> 15</p>
+          <p><strong>Warlord:</strong> Captain in Terminator Armour</p>
+          <div>
+            <span>Invalid ⚠️</span>
+          </div>
+          <p>Points exceed limit (2045/2000)</p>
+        </div>
+        <div>
+          <div>
+            <a href="list-detail.html">View List</a>
+            <a href="list-builder.html">Edit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example List 4 -->
+      <div>
+        <div>
+          <div>
+            <h3>Goff Warband</h3>
+            <span>1000 pts</span>
+          </div>
+          <p>Orks - Waaagh! Detachment</p>
+        </div>
+        <div>
+          <p><strong>Total Points:</strong> 990 / 1000</p>
+          <p><strong>Total Units:</strong> 10</p>
+          <p><strong>Warlord:</strong> Warboss</p>
+          <div>
+            <span>Valid ✓</span>
+          </div>
+        </div>
+        <div>
+          <div>
+            <a href="list-detail.html">View List</a>
+            <a href="list-builder.html">Edit</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Empty State (show when no lists exist) -->
+    <!-- Uncomment this when there's no data -->
+    <!--
+    <div>
+      <div>📋</div>
+      <h3>No Army Lists Yet</h3>
+      <p>Build your first army list to get started</p>
+      <a href="list-builder.html">Build Your First List</a>
+    </div>
+    -->
+
+  </main>
+</body>
+</html>
