@@ -81,3 +81,46 @@ nav ul li a.active {
   justify-content: center;
   align-items: center;
 }
+
+h2 {
+  color: var(--text-primary);
+  margin-top: 2rem;
+}
+
+.cards-container {
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 350px;
+  min-height: 300px;
+}
+
+.card-header h3 {
+  margin-top: 0;
+  color: var(--blue-dark);
+}
+
+.card-body {
+  flex-grow: 1;
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--primary-teal);
+  color: var(--bg-white);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin: 0.25rem;
+  font-weight: 500;
+}
