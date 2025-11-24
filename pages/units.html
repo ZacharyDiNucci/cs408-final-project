@@ -20,164 +20,128 @@
     </nav>
   </header>
 
-  <main>
+<main>
+  <div class="center">
     <div>
-      <div>
-        <h2>All Units</h2>
-        <p>Browse and manage units from all factions</p>
-      </div>
-      <a href="create-unit.html">+ Create Unit</a>
+      <h2>All Units</h2>
+      <p>Browse and manage units from all factions</p>
     </div>
-
-    <!-- Filter Section -->
     <div>
-      <div>
-        <h3>Filters</h3>
-      </div>
-      <div>
-        <div>
-          <div>
-            <label for="search-units">Search by Name</label>
-            <input type="text" id="search-units" placeholder="Search units...">
-          </div>
-
-          <div>
-            <label for="filter-faction">Filter by Faction</label>
-            <select id="filter-faction">
-              <option value="">All Factions</option>
-              <option value="imperial-guard">Imperial Guard</option>
-              <option value="space-marines">Space Marines</option>
-              <option value="orks">Orks</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="filter-tag">Filter by Tag</label>
-            <select id="filter-tag">
-              <option value="">All Tags</option>
-              <option value="infantry">Infantry</option>
-              <option value="vehicle">Vehicle</option>
-              <option value="elite">Elite</option>
-              <option value="character">Character</option>
-              <option value="battleline">Battleline</option>
-            </select>
-          </div>
-        </div>
-      </div>
+      <a class="btn" href="create-unit.html">+ Create Unit</a>
     </div>
+  </div>
 
-    <!-- Units List -->
-    <ul>
-      
-      <!-- Example Unit 1 -->
-      <li>
-        <div>
-          <h3>Cadian Shock Troops</h3>
-          <div>
+  <div class="table-container">
+    <div>
+      <label for="search">Search Units</label>
+      <input type="text" id="search" placeholder="Search by name...">
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Unit Name</th>
+          <th>Faction</th>
+          <th>Tags</th>
+          <th>Points</th>
+          <th>Models</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>Cadian Shock Troops</strong>
+          </td>
+          <td>Imperial Guard</td>
+          <td>
             <span>Infantry</span>
             <span>Battleline</span>
-            <span>Imperial Guard</span>
-          </div>
-          <p><strong>Points:</strong> 65 (10 models) | <strong>Movement:</strong> 6" | <strong>Toughness:</strong> 3</p>
-        </div>
-        <div>
-          <a href="unit-detail.html">View Details</a>
-        </div>
-      </li>
-
-      <!-- Example Unit 2 -->
-      <li>
-        <div>
-          <h3>Leman Russ Battle Tank</h3>
-          <div>
+          </td>
+          <td>65</td>
+          <td>10</td>
+          <td>
+            <a class="btn" href="unit-detail.html">View Details</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Leman Russ Battle Tank</strong>
+          </td>
+          <td>Imperial Guard</td>
+          <td>
             <span>Vehicle</span>
             <span>Heavy Support</span>
-            <span>Imperial Guard</span>
-          </div>
-          <p><strong>Points:</strong> 180 (1 model) | <strong>Movement:</strong> 10" | <strong>Toughness:</strong> 11</p>
-        </div>
-        <div>
-          <a href="unit-detail.html">View Details</a>
-        </div>
-      </li>
-
-      <!-- Example Unit 3 -->
-      <li>
-        <div>
-          <h3>Company Commander</h3>
-          <div>
+          </td>
+          <td>180</td>
+          <td>1</td>
+          <td>
+            <a class="btn" href="unit-detail.html">View Details</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Company Commander</strong>
+          </td>
+          <td>Imperial Guard</td>
+          <td>
             <span>Infantry</span>
             <span>Character</span>
-            <span>Imperial Guard</span>
-          </div>
-          <p><strong>Points:</strong> 50 (1 model) | <strong>Movement:</strong> 6" | <strong>Toughness:</strong> 3</p>
-        </div>
-        <div>
-          <a href="unit-detail.html">View Details</a>
-        </div>
-      </li>
-
-      <!-- Example Unit 4 -->
-      <li>
-        <div>
-          <h3>Intercessor Squad</h3>
-          <div>
+          </td>
+          <td>50</td>
+          <td>1</td>
+          <td>
+            <a class="btn" href="unit-detail.html">View Details</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Intercessor Squad</strong>
+          </td>
+          <td>Space Marines</td>
+          <td>
             <span>Infantry</span>
             <span>Battleline</span>
-            <span>Space Marines</span>
-          </div>
-          <p><strong>Points:</strong> 90 (5 models) | <strong>Movement:</strong> 6" | <strong>Toughness:</strong> 4</p>
-        </div>
-        <div>
-          <a href="unit-detail.html">View Details</a>
-        </div>
-      </li>
-
-      <!-- Example Unit 5 -->
-      <li>
-        <div>
-          <h3>Captain in Terminator Armour</h3>
-          <div>
+          </td>
+          <td>90</td>
+          <td>5</td>
+          <td>
+            <a class="btn" href="unit-detail.html">View Details</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Captain in Terminator Armour</strong>
+          </td>
+          <td>Space Marines</td>
+          <td>
             <span>Infantry</span>
             <span>Character</span>
-            <span>Space Marines</span>
-          </div>
-          <p><strong>Points:</strong> 95 (1 model) | <strong>Movement:</strong> 5" | <strong>Toughness:</strong> 5</p>
-        </div>
-        <div>
-          <a href="unit-detail.html">View Details</a>
-        </div>
-      </li>
-
-      <!-- Example Unit 6 -->
-      <li>
-        <div>
-          <h3>Boyz</h3>
-          <div>
+          </td>
+          <td>95</td>
+          <td>1</td>
+          <td>
+            <a class="btn" href="unit-detail.html">View Details</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Boyz</strong>
+          </td>
+          <td>Orks</td>
+          <td>
             <span>Infantry</span>
             <span>Battleline</span>
-            <span>Orks</span>
-          </div>
-          <p><strong>Points:</strong> 90 (10 models) | <strong>Movement:</strong> 6" | <strong>Toughness:</strong> 5</p>
-        </div>
-        <div>
-          <a href="unit-detail.html">View Details</a>
-        </div>
-      </li>
-
-    </ul>
-
-    <!-- Empty State (show when no units exist) -->
-    <!-- Uncomment this when there's no data -->
-    <!--
-    <div>
-      <div>⚔️</div>
-      <h3>No Units Yet</h3>
-      <p>Create your first unit to get started</p>
-      <a href="create-unit.html">Create Your First Unit</a>
-    </div>
-    -->
-
-  </main>
+          </td>
+          <td>90</td>
+          <td>10</td>
+          <td>
+            <a class="btn" href="unit-detail.html">View Details</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
 </body>
 </html>

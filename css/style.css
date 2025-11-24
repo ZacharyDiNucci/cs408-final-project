@@ -23,7 +23,13 @@
 
 body{
   margin:0;
-  padding: 0;;
+  padding: 0;
+}
+
+main {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 header {
@@ -123,4 +129,636 @@ h2 {
   border-radius: 5px;
   margin: 0.25rem;
   font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--primary-blue);
+}
+
+/* Search container */
+div > div {
+  margin: 2rem 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+input[type="text"] {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+input[type="text"]::placeholder {
+  color: #999;
+}
+
+/* Table with margins */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+  margin: 2rem 0;
+}
+
+thead {
+  background-color: #2c3e50;
+  color: white;
+}
+
+td, th {
+  border-right: 1px solid #d0d0d0;
+}
+
+td:last-child, th:last-child {
+  border-right: none;
+}
+
+th {
+  border-right: 2px solid #1a252f;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+th:last-child {
+  border-right: none;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+td small {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+td span {
+  display: inline-block;
+  background-color: #e8f4f8;
+  color: #2980b9;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin: 0.125rem;
+  font-size: 0.875rem;
+}
+
+/* Generic Detail Page Styles */
+
+/* Header section */
+.detail-header {
+  background-color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.detail-header h2 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 2rem;
+}
+
+.detail-header p {
+  color: #666;
+  font-size: 1.125rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.description {
+  line-height: 1.6;
+  color: #333;
+  margin-top: 1rem;
+}
+
+/* Section containers */
+.content-section {
+  background-color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h3 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #3498db;
+}
+
+.content-section h4 {
+  color: #34495e;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Highlighted info box */
+.info-box {
+  background-color: #e8f4f8;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+  margin-bottom: 1rem;
+}
+
+.info-box h4 {
+  margin-top: 0;
+  color: #2980b9;
+}
+
+/* Item list */
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.list-item-box {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+}
+
+.list-item-box h4 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.item-label {
+  font-weight: 600;
+  color: #2980b9;
+  margin-bottom: 0.5rem;
+}
+
+/* Tags/badges */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tags span {
+  background-color: #e8f4f8;
+  color: #2980b9;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Action buttons in header */
+.header-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Breadcrumb navigation */
+.breadcrumb {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.breadcrumb a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+  color: #2980b9;
+}
+
+/* Unit image in table */
+.unit-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+}
+
+.unit-image-large {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+}
+
+/* Form Styles for Creation Pages */
+
+/* Form sections */
+.form-section {
+  background-color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h3 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #3498db;
+}
+
+.form-section h4 {
+  color: #34495e;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-section p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  font-family: inherit;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 0.5rem;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+/* Grid layout for forms */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.form-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* Responsive forms - stack on smaller screens */
+@media (max-width: 768px) {
+  .form-grid-2,
+  .form-grid-3,
+  .form-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Nested form item (like detachment or weapon groups) */
+.form-item {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.form-item h4 {
+  margin-top: 0;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+/* Button group for form actions */
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-add {
+  background-color: var(--primary-blue);
+  color: white;
+}
+
+.btn-add:hover {
+  background-color: var(--blue-dark);
+}
+
+/* List Builder Specific Styles */
+
+/* Current army summary box */
+.army-summary {
+  background-color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid var(--primary-teal);
+}
+
+.army-summary h3 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.summary-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+/* Unit list in army builder */
+.unit-list-item {
+  background-color: white;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.unit-list-item:hover {
+  border-color: var(--primary-teal);
+}
+
+.unit-info {
+  flex: 1;
+}
+
+.unit-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+}
+
+.unit-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.unit-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Available units grid */
+.available-units {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.unit-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.unit-card:hover {
+  border-color: var(--primary-teal);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.unit-card h4 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.unit-card p {
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* Validation alert */
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 4px solid;
+}
+
+.alert-success {
+  background-color: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+.alert-warning {
+  background-color: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.alert-info {
+  background-color: #dbeafe;
+  border-color: var(--primary-blue);
+  color: var(--blue-dark);
+}
+
+.alert p {
+  margin: 0;
+}
+
+.alert ul {
+  margin: 0.5rem 0 0 1.5rem;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #666;
+}
+
+.empty-state h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  margin-bottom: 1.5rem;
+}
+
+/* Points display */
+.points-display {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.points-limit {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Checkbox and radio styles */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+}
+
+.checkbox-group,
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checkbox-label,
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* Customization panel (for list builder) */
+.customization-panel {
+  background-color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--primary-blue);
+}
+
+.customization-panel h3 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+/* Image preview */
+.image-preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 200px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+}
+
+.preview-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #666;
+  font-size: 0.875rem;
 }

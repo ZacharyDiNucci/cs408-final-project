@@ -21,240 +21,251 @@
   </header>
 
   <main>
-    <div>
+    <div class="breadcrumb">
+      <a href="lists.html">← Back to Army Lists</a>
+    </div>
+
+    <div class="detail-header">
       <h2>Build Army List</h2>
       <p>Create and customize your army</p>
     </div>
 
     <!-- List Configuration -->
-    <div>
-      <div>
-        <h3>Army Configuration</h3>
-      </div>
-      <div>
-        <div>
-          <div>
-            <label for="list-name">Army List Name *</label>
-            <input type="text" id="list-name" placeholder="e.g., Tournament List, Casual Game Army">
-          </div>
-
-          <div>
-            <label for="point-limit">Point Limit *</label>
-            <select id="point-limit">
-              <option value="500">Combat Patrol - 500 Points</option>
-              <option value="1000" selected>Incursion - 1000 Points</option>
-              <option value="2000">Strike Force - 2000 Points</option>
-              <option value="custom">Custom...</option>
-            </select>
-          </div>
+    <div class="form-section">
+      <h3>Army Configuration</h3>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label for="list-name">Army List Name *</label>
+          <input type="text" id="list-name" placeholder="e.g., Tournament List, Casual Game Army">
         </div>
 
-        <div>
-          <div>
-            <label for="select-faction">Select Faction *</label>
-            <select id="select-faction">
-              <option value="">Choose a faction...</option>
-              <option value="imperial-guard">Imperial Guard</option>
-              <option value="space-marines">Space Marines</option>
-              <option value="orks">Orks</option>
-            </select>
-          </div>
+        <div class="form-group">
+          <label for="point-limit">Point Limit *</label>
+          <select id="point-limit">
+            <option value="500">Combat Patrol - 500 Points</option>
+            <option value="1000" selected>Incursion - 1000 Points</option>
+            <option value="2000">Strike Force - 2000 Points</option>
+            <option value="custom">Custom...</option>
+          </select>
+        </div>
+      </div>
 
-          <div>
-            <label for="select-detachment">Select Detachment</label>
-            <select id="select-detachment" disabled>
-              <option value="">Select a faction first...</option>
-            </select>
-            <small>Choose your subfaction rules</small>
-          </div>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label for="select-faction">Select Faction *</label>
+          <select id="select-faction">
+            <option value="">Choose a faction...</option>
+            <option value="imperial-guard">Imperial Guard</option>
+            <option value="space-marines">Space Marines</option>
+            <option value="orks">Orks</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="select-detachment">Select Detachment</label>
+          <select id="select-detachment" disabled>
+            <option value="">Select a faction first...</option>
+          </select>
+          <small>Choose your subfaction rules</small>
         </div>
       </div>
     </div>
 
-    <!-- Current List Summary -->
-    <div>
-      <div>
-        <h3>Current Army</h3>
+    <!-- Current Army Summary -->
+    <div class="army-summary">
+      <div class="summary-stats">
         <div>
-          <span>0 / 1000</span>
-          <span> points</span>
+          <h3>Current Army</h3>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Points</div>
+          <div class="stat-value">0 / 1000</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Units</div>
+          <div class="stat-value">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Warlord</div>
+          <div class="stat-value">-</div>
         </div>
       </div>
-      <div>
-        <div>
-          <p><strong>Warlord:</strong> Not selected</p>
-          <p><strong>Total Units:</strong> 0</p>
-          <p><strong>Army Rules:</strong> Select a faction to see army rules</p>
-        </div>
 
-        <!-- Unit list will go here -->
-        <div>
-          <div>📋</div>
-          <h3>No Units Added Yet</h3>
-          <p>Add units from the available units section below</p>
-        </div>
+      <div class="alert alert-info">
+        <p><strong>Army Rules:</strong> Select a faction to see army rules</p>
+      </div>
+    </div>
 
-        <!-- Example of added units (will be dynamically generated) -->
-        <!--
-        <ul>
-          <li>
-            <div>
-              <img src="https://placehold.co/60x60/14b8a6/ffffff?text=Commander" alt="Company Commander">
-            </div>
-            <div>
-              <h3>Company Commander <span>Warlord</span></h3>
-              <p>50 points | 1 model</p>
-              <div>
-                <span>Infantry</span>
-                <span>Character</span>
-              </div>
-            </div>
-            <div>
-              <button>Customize</button>
-              <button>Remove</button>
-            </div>
-          </li>
-        </ul>
-        -->
+    <!-- Current Units List -->
+    <div class="content-section">
+      <h3>Units in Army</h3>
+      
+      <!-- Empty State (shown when no units) -->
+      <div class="empty-state">
+        <h3>No Units Added Yet</h3>
+        <p>Add units from the available units section below</p>
       </div>
-      <div>
+
+      <!-- Example of added units (will be dynamically generated) -->
+      <!--
+      <div class="unit-list-item">
         <div>
-          <button>Save Army List</button>
-          <button>Export to File</button>
-          <a href="lists.html">Cancel</a>
+          <img src="https://placehold.co/60x60/14b8a6/ffffff?text=Commander" alt="Commander" class="unit-image">
+        </div>
+        <div class="unit-info">
+          <h4>Company Commander <span>Warlord</span></h4>
+          <p>50 points | 1 model | Infantry, Character</p>
+        </div>
+        <div class="unit-actions">
+          <button class="btn btn-secondary">Customize</button>
+          <button class="btn btn-secondary">Remove</button>
         </div>
       </div>
+      -->
     </div>
 
     <!-- Available Units -->
-    <div>
-      <div>
-        <h3>Available Units</h3>
-        <p>Select a faction above to see available units</p>
+    <div class="content-section">
+      <h3>Available Units</h3>
+      <p>Select a faction above to see available units</p>
+      
+      <!-- Search/Filter -->
+      <div class="form-group">
+        <label for="search-available">Search Units</label>
+        <input type="text" id="search-available" placeholder="Search by name or tag...">
       </div>
-      <div>
-        <!-- Search/Filter -->
-        <div>
-          <label for="search-available">Search Units</label>
-          <input type="text" id="search-available" placeholder="Search by name or tag...">
-        </div>
 
-        <!-- Units will be shown here based on selected faction -->
-        <div>
-          <div>🛡️</div>
-          <h3>Select a Faction</h3>
-          <p>Choose a faction above to see available units</p>
-        </div>
+      <!-- Empty State -->
+      <div class="empty-state">
+        <h3>Select a Faction</h3>
+        <p>Choose a faction above to see available units</p>
+      </div>
 
-        <!-- Example of available units (will be dynamically generated) -->
-        <!--
-        <div>
-          <div>
-            <div>
-              <h3>Cadian Shock Troops</h3>
-              <div>
-                <span>Infantry</span>
-                <span>Battleline</span>
-              </div>
-            </div>
-            <div>
-              <p><strong>Base Cost:</strong> 65 points (10 models)</p>
-              <p><strong>Stats:</strong> M 6" | T 3 | Sv 4+ | W 1</p>
-              <p><strong>Max Per Army:</strong> Unlimited</p>
-            </div>
-            <div>
-              <button>+ Add to Army</button>
-            </div>
+      <!-- Example of available units (will be dynamically generated) -->
+      <!--
+      <div class="available-units">
+        <div class="unit-card">
+          <h4>Cadian Shock Troops</h4>
+          <div class="tags">
+            <span>Infantry</span>
+            <span>Battleline</span>
           </div>
+          <p><strong>Base Cost:</strong> 65 points (10 models)</p>
+          <p><strong>Stats:</strong> M 6" | T 3 | Sv 4+ | W 1</p>
+          <button class="btn">+ Add to Army</button>
         </div>
-        -->
+
+        <div class="unit-card">
+          <h4>Company Commander</h4>
+          <div class="tags">
+            <span>Infantry</span>
+            <span>Character</span>
+          </div>
+          <p><strong>Base Cost:</strong> 50 points (1 model)</p>
+          <p><strong>Stats:</strong> M 6" | T 3 | Sv 4+ | W 3</p>
+          <button class="btn">+ Add to Army</button>
+        </div>
+
+        <div class="unit-card">
+          <h4>Leman Russ Battle Tank</h4>
+          <div class="tags">
+            <span>Vehicle</span>
+            <span>Heavy Support</span>
+          </div>
+          <p><strong>Base Cost:</strong> 180 points (1 model)</p>
+          <p><strong>Stats:</strong> M 10" | T 11 | Sv 2+ | W 13</p>
+          <button class="btn">+ Add to Army</button>
+        </div>
       </div>
+      -->
     </div>
 
-    <!-- Validation Warnings -->
-    <div>
-      <div>
-        <h3>Validation Status</h3>
+    <!-- Validation Status -->
+    <div class="content-section">
+      <h3>Validation Status</h3>
+      
+      <div class="alert alert-success">
+        <p><strong>✓ Army List is Valid</strong></p>
+        <p>Your army meets all requirements and is ready for battle!</p>
       </div>
-      <div>
-        <div>
-          <p><strong>✓ Army List is Valid</strong></p>
-          <p>Your army meets all requirements and is ready for battle!</p>
-        </div>
 
-        <!-- Example of validation warnings (will be shown when rules are broken) -->
-        <!--
-        <div>
-          <p><strong>Validation Warnings:</strong></p>
-          <ul>
-            <li>No Warlord selected - you must designate one character as your Warlord</li>
-            <li>Points exceed limit: 1045/1000</li>
-            <li>Too many Heavy Support units: 4/3 allowed</li>
-          </ul>
-        </div>
-        -->
+      <!-- Example of validation warnings (will be shown when rules are broken) -->
+      <!--
+      <div class="alert alert-warning">
+        <p><strong>⚠️ Validation Warnings:</strong></p>
+        <ul>
+          <li>No Warlord selected - you must designate one character as your Warlord</li>
+          <li>Points exceed limit: 1045/1000</li>
+          <li>Too many Heavy Support units: 4/3 allowed</li>
+        </ul>
       </div>
+      -->
     </div>
 
     <!-- Unit Customization Panel (Hidden by default, shown when clicking "Customize" button) -->
-    <!-- This would be a modal or slide-in panel in the final JavaScript version -->
     <!--
-    <div>
-      <div>
-        <div>
-          <h3>Customize Unit: Company Commander</h3>
-          <button>Close</button>
+    <div class="customization-panel">
+      <div class="summary-stats">
+        <h3>Customize Unit: Company Commander</h3>
+        <button class="btn btn-secondary">Close</button>
+      </div>
+      
+      <div class="form-group">
+        <label for="custom-unit-name">Custom Unit Name</label>
+        <input type="text" id="custom-unit-name" placeholder='e.g., "Iron Hand" Brennan'>
+        <small>Give this unit a custom name for your army list</small>
+      </div>
+
+      <div class="form-group">
+        <label for="custom-unit-image">Unit Image</label>
+        <input type="file" id="custom-unit-image" accept="image/*">
+        <small>Upload a custom image for this unit</small>
+        <div class="image-preview">
+          <span class="preview-label">Current Image:</span>
+          <img src="https://placehold.co/100x100/14b8a6/ffffff?text=Commander" alt="Unit preview">
         </div>
       </div>
-      <div>
-        <div>
-          <label for="custom-unit-name">Custom Unit Name</label>
-          <input type="text" id="custom-unit-name" placeholder='e.g., "Iron Hand" Brennan'>
-          <small>Give this unit a custom name for your army list</small>
-        </div>
 
-        <div>
-          <label for="custom-unit-image">Unit Image</label>
-          <input type="file" id="custom-unit-image" accept="image/*">
-          <small>Upload a custom image for this unit</small>
-          <div>
-            <p>Current Image:</p>
-            <img src="https://placehold.co/100x100/14b8a6/ffffff?text=Commander" alt="Unit preview">
-          </div>
-        </div>
-
-        <div>
-          <label for="custom-warlord">Warlord</label>
+      <div class="form-group">
+        <label>
           <input type="checkbox" id="custom-warlord">
-          <span>Designate as Warlord</span>
-        </div>
+          Designate as Warlord
+        </label>
+      </div>
 
-        <div>
-          <label>Weapon Options</label>
-          <div>
-            <label>
-              <input type="radio" name="weapon" value="bolt-pistol" checked>
-              <span>Bolt Pistol (included)</span>
-            </label>
-            <label>
-              <input type="radio" name="weapon" value="plasma-pistol">
-              <span>Plasma Pistol (+5 points)</span>
-            </label>
-            <label>
-              <input type="radio" name="weapon" value="power-sword">
-              <span>Power Sword (+10 points)</span>
-            </label>
-          </div>
+      <div class="form-group">
+        <label>Weapon Options</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="weapon" value="bolt-pistol" checked>
+            Bolt Pistol (included)
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="weapon" value="plasma-pistol">
+            Plasma Pistol (+5 points)
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="weapon" value="power-sword">
+            Power Sword (+10 points)
+          </label>
         </div>
+      </div>
 
-        <div>
-          <button>Save Changes</button>
-          <button>Cancel</button>
-        </div>
+      <div class="form-actions">
+        <button class="btn">Save Changes</button>
+        <button class="btn btn-secondary">Cancel</button>
       </div>
     </div>
     -->
 
+    <!-- Form Actions -->
+    <div class="form-section">
+      <div class="form-actions">
+        <button class="btn">Save Army List</button>
+        <button class="btn btn-secondary">Export to File</button>
+        <a href="lists.html" class="btn btn-secondary">Cancel</a>
+      </div>
+    </div>
   </main>
 </body>
 </html>

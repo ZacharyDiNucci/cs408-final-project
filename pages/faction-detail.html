@@ -21,130 +21,148 @@
   </header>
 
   <main>
-    <!-- Breadcrumb -->
-    <div>
-      <a href="./pages/factions.html">← Back to Factions</a>
+    <div class="breadcrumb">
+      <a href="factions.html">← Back to Factions</a>
     </div>
 
-    <!-- Faction Header -->
-    <div>
-      <div>
-        <div>
-          <div>
-            <h2>Imperial Guard</h2>
-            <p>The hammer of the Emperor</p>
-          </div>
-          <div>
-            <a href="list-builder.html">Build Army List</a>
-            <button>Edit Faction</button>
-          </div>
-        </div>
+    <div class="detail-header">
+      <h2>Imperial Guard</h2>
+      <p>The hammer of the Emperor</p>
+      <div class="tags">
+        <span>Infantry</span>
+        <span>Vehicles</span>
+        <span>Artillery</span>
       </div>
-      <div>
-        <div>
-          <span>Infantry</span>
-          <span>Vehicles</span>
-          <span>Artillery</span>
-        </div>
-        <p>The Imperial Guard, also known as the Astra Militarum, are the primary fighting force of the Imperium of Man. Comprised of countless billions of soldiers from across the galaxy, they represent humanity's might through sheer numbers, devastating firepower, and unwavering courage. Where a Space Marine conquers, the Imperial Guard holds.</p>
+      <p class="description">
+        The Imperial Guard, also known as the Astra Militarum, are the primary fighting force of the Imperium of Man. 
+        Comprised of countless billions of soldiers from across the galaxy, they represent humanity's might through 
+        sheer numbers, devastating firepower, and unwavering courage. Where a Space Marine conquers, the Imperial Guard holds.
+      </p>
+      <div class="header-actions">
+        <a class="btn" href="list-builder.html">Build Army List</a>
+        <a class="btn" href="#">Edit Faction</a>
       </div>
     </div>
 
-    <!-- Army Rule -->
-    <div>
-      <div>
-        <h3>Army Rule: Combined Arms</h3>
-      </div>
-      <div>
-        <p>Infantry units within 6" of a friendly Vehicle unit gain +1 to their hit rolls. Vehicle units within 6" of a friendly Infantry unit gain +1 to their Leadership tests. This represents the tactical synergy between the Guard's infantry and armored divisions working in concert.</p>
-        <div>
-          <p><strong>Tactical Tip:</strong> Keep your infantry squads close to tanks for improved accuracy, while your vehicles benefit from infantry support when morale matters.</p>
-        </div>
+    <div class="content-section">
+      <h3>Army Rule</h3>
+      <div class="info-box">
+        <h4>Combined Arms</h4>
+        <p>Infantry units within 6" of a friendly Vehicle unit gain +1 to their hit rolls. Vehicle units within 6" 
+        of a friendly Infantry unit gain +1 to their Leadership tests. This represents the tactical synergy between 
+        the Guard's infantry and armored divisions working in concert.</p>
       </div>
     </div>
 
-    <!-- Detachments -->
-    <div>
-      <div>
-        <h3>Available Detachments</h3>
-        <p>Choose one when building your army list</p>
-      </div>
-      <div>
-        <div>
-          
-          <!-- Detachment 1 -->
-          <div>
-            <h4>Infantry Company</h4>
-            <p>Born Soldiers</p>
-            <p>Infantry units gain +1 to hit rolls when within 6" of an Officer. Represents elite infantry formations that excel in coordinated warfare.</p>
-          </div>
-
-          <!-- Detachment 2 -->
-          <div>
-            <h4>Armored Regiment</h4>
-            <p>Steel Phalanx</p>
-            <p>Vehicle units gain +1 Toughness when within 3" of another friendly Vehicle unit. Your armored spearhead becomes nearly unstoppable.</p>
-          </div>
-
+    <div class="content-section">
+      <h3>Available Detachments</h3>
+      <p>Choose one when building your army list</p>
+      <div class="item-list">
+        <div class="list-item-box">
+          <h4>Infantry Company</h4>
+          <p class="item-label">Born Soldiers</p>
+          <p>Infantry units gain +1 to hit rolls when within 6" of an Officer. Represents elite infantry formations 
+          that excel in coordinated warfare.</p>
         </div>
-      </div>
-    </div>
-
-    <!-- Units in this Faction -->
-    <div>
-      <div>
-        <div>
-          <h3>Units (12 total)</h3>
-          <a href="create-unit.html">+ Add Unit</a>
-        </div>
-      </div>
-      <div>
         
-        <!-- Filter by unit type -->
-        <div>
-          <label for="filter-unit-type">Filter by Type</label>
-          <select id="filter-unit-type">
-            <option value="">All Units</option>
-            <option value="character">Characters</option>
-            <option value="battleline">Battleline</option>
-            <option value="vehicle">Vehicles</option>
-            <option value="heavy">Heavy Support</option>
-          </select>
+        <div class="list-item-box">
+          <h4>Armored Regiment</h4>
+          <p class="item-label">Steel Phalanx</p>
+          <p>Vehicle units gain +1 Toughness when within 3" of another friendly Vehicle unit. Your armored spearhead 
+          becomes nearly unstoppable.</p>
         </div>
+        
+        <div class="list-item-box">
+          <h4>Combined Arms Brigade</h4>
+          <p class="item-label">Tactical Coordination</p>
+          <p>Units gain +1 to hit when targeting an enemy unit that's within 12" of another friendly unit. Emphasizes 
+          surrounding and overwhelming the enemy.</p>
+        </div>
+      </div>
+    </div>
 
-        <!-- Units List -->
-        <ul>
-          <li>
-            <div>
-              <h3>Company Commander</h3>
-              <div>
+    <div class="content-section">
+      <h3>Units in this Faction (12 total)</h3>
+      <div class="table-container">
+        <div>
+          <label for="filter">Filter by Type</label>
+          <input type="text" id="filter" placeholder="Search units...">
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Unit Name</th>
+              <th>Tags</th>
+              <th>Points</th>
+              <th>Models</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Company Commander</strong></td>
+              <td>
                 <span>Infantry</span>
                 <span>Character</span>
-              </div>
-              <p><strong>50 points</strong> | M 6" | T 3 | Sv 4+ | W 3 | Ld 7+ | OC 1</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">View Details</a>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <h3>Cadian Shock Troops</h3>
-              <div>
+              </td>
+              <td>50</td>
+              <td>1</td>
+              <td>
+                <a class="btn" href="unit-detail.html">View Details</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Cadian Shock Troops</strong></td>
+              <td>
                 <span>Infantry</span>
                 <span>Battleline</span>
-              </div>
-              <p><strong>65 points (10 models)</strong> | M 6" | T 3 | Sv 4+ | W 1 | Ld 7+ | OC 2</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">View Details</a>
-            </div>
-          </li>
-        </ul>
+              </td>
+              <td>65</td>
+              <td>10</td>
+              <td>
+                <a class="btn" href="unit-detail.html">View Details</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Tempestus Scions</strong></td>
+              <td>
+                <span>Infantry</span>
+                <span>Elite</span>
+              </td>
+              <td>75</td>
+              <td>5</td>
+              <td>
+                <a class="btn" href="unit-detail.html">View Details</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Chimera Transport</strong></td>
+              <td>
+                <span>Vehicle</span>
+                <span>Transport</span>
+              </td>
+              <td>85</td>
+              <td>1</td>
+              <td>
+                <a class="btn" href="unit-detail.html">View Details</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Leman Russ Battle Tank</strong></td>
+              <td>
+                <span>Vehicle</span>
+                <span>Heavy Support</span>
+              </td>
+              <td>180</td>
+              <td>1</td>
+              <td>
+                <a class="btn" href="unit-detail.html">View Details</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-
   </main>
 </body>
 </html>

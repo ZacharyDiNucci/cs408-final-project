@@ -21,173 +21,104 @@
   </header>
 
   <main>
+  <div class="center">
     <div>
-      <div>
-        <h2>Army Lists</h2>
-        <p>Manage your saved army lists</p>
-      </div>
-      <a href="list-builder.html">+ Build New List</a>
+      <h2>Army Lists</h2>
+      <p>Manage your saved army lists</p>
     </div>
-
-    <!-- Message when no factions exist -->
-    <!-- Uncomment this section when there are no factions in the database -->
-    <!--
     <div>
-      <h3>No Factions Available</h3>
-      <p>You need to create at least one faction before building army lists.</p>
-      <a href="create-faction.html">Create Your First Faction</a>
+      <a class="btn" href="list-builder.html">+ Build New List</a>
     </div>
-    -->
+  </div>
 
-    <!-- Filter Section -->
+  <div class="table-container">
     <div>
-      <div>
-        <div>
-          <div>
-            <label for="search-lists">Search Lists</label>
-            <input type="text" id="search-lists" placeholder="Search by name...">
-          </div>
-
-          <div>
-            <label for="filter-faction">Filter by Faction</label>
-            <select id="filter-faction">
-              <option value="">All Factions</option>
-              <option value="imperial-guard">Imperial Guard</option>
-              <option value="space-marines">Space Marines</option>
-              <option value="orks">Orks</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="filter-points">Filter by Point Level</label>
-            <select id="filter-points">
-              <option value="">All Point Levels</option>
-              <option value="500">500 Points</option>
-              <option value="1000">1000 Points</option>
-              <option value="2000">2000 Points</option>
-            </select>
-          </div>
-        </div>
-      </div>
+      <label for="search">Search Lists</label>
+      <input type="text" id="search" placeholder="Search by name...">
     </div>
-
-    <!-- Army Lists Grid -->
-    <div>
-      
-      <!-- Example List 1 -->
-      <div>
-        <div>
-          <div>
-            <h3>Steel Legion Infantry Company</h3>
-            <span>1000 pts</span>
-          </div>
-          <p>Imperial Guard - Infantry Company Detachment</p>
-        </div>
-        <div>
-          <p><strong>Total Points:</strong> 995 / 1000</p>
-          <p><strong>Total Units:</strong> 8</p>
-          <p><strong>Warlord:</strong> Company Commander</p>
-          <div>
-            <span>Valid ✓</span>
-          </div>
-        </div>
-        <div>
-          <div>
-            <a href="list-detail.html">View List</a>
-            <a href="list-builder.html">Edit</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Example List 2 -->
-      <div>
-        <div>
-          <div>
-            <h3>Armored Spearhead</h3>
-            <span>2000 pts</span>
-          </div>
-          <p>Imperial Guard - Armored Regiment Detachment</p>
-        </div>
-        <div>
-          <p><strong>Total Points:</strong> 1985 / 2000</p>
-          <p><strong>Total Units:</strong> 12</p>
-          <p><strong>Warlord:</strong> Tank Commander</p>
-          <div>
-            <span>Valid ✓</span>
-          </div>
-        </div>
-        <div>
-          <div>
-            <a href="list-detail.html">View List</a>
-            <a href="list-builder.html">Edit</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Example List 3 - Invalid -->
-      <div>
-        <div>
-          <div>
-            <h3>Ultramarines Strike Force</h3>
-            <span>2000 pts</span>
-          </div>
-          <p>Space Marines - Gladius Task Force</p>
-        </div>
-        <div>
-          <p><strong>Total Points:</strong> 2045 / 2000</p>
-          <p><strong>Total Units:</strong> 15</p>
-          <p><strong>Warlord:</strong> Captain in Terminator Armour</p>
-          <div>
-            <span>Invalid ⚠️</span>
-          </div>
-          <p>Points exceed limit (2045/2000)</p>
-        </div>
-        <div>
-          <div>
-            <a href="list-detail.html">View List</a>
-            <a href="list-builder.html">Edit</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Example List 4 -->
-      <div>
-        <div>
-          <div>
-            <h3>Goff Warband</h3>
-            <span>1000 pts</span>
-          </div>
-          <p>Orks - Waaagh! Detachment</p>
-        </div>
-        <div>
-          <p><strong>Total Points:</strong> 990 / 1000</p>
-          <p><strong>Total Units:</strong> 10</p>
-          <p><strong>Warlord:</strong> Warboss</p>
-          <div>
-            <span>Valid ✓</span>
-          </div>
-        </div>
-        <div>
-          <div>
-            <a href="list-detail.html">View List</a>
-            <a href="list-builder.html">Edit</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Empty State (show when no lists exist) -->
-    <!-- Uncomment this when there's no data -->
-    <!--
-    <div>
-      <div>📋</div>
-      <h3>No Army Lists Yet</h3>
-      <p>Build your first army list to get started</p>
-      <a href="list-builder.html">Build Your First List</a>
-    </div>
-    -->
-
-  </main>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>List Name</th>
+          <th>Faction</th>
+          <th>Detachment</th>
+          <th>Point Limit</th>
+          <th>Current Points</th>
+          <th>Total Units</th>
+          <th>Warlord</th>
+          <th>Valid</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>Steel Legion Infantry Company</strong>
+          </td>
+          <td>Imperial Guard</td>
+          <td>Infantry Company</td>
+          <td>1000</td>
+          <td>995</td>
+          <td>8</td>
+          <td>Company Commander</td>
+          <td><span>Valid ✓</span></td>
+          <td>
+            <a class="btn" href="list-detail.html">View List</a>
+            <a class="btn" href="list-builder.html">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Armored Spearhead</strong>
+          </td>
+          <td>Imperial Guard</td>
+          <td>Armored Regiment</td>
+          <td>2000</td>
+          <td>1985</td>
+          <td>12</td>
+          <td>Tank Commander</td>
+          <td><span>Valid ✓</span></td>
+          <td>
+            <a class="btn" href="list-detail.html">View List</a>
+            <a class="btn" href="list-builder.html">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Ultramarines Strike Force</strong>
+          </td>
+          <td>Space Marines</td>
+          <td>Gladius Task Force</td>
+          <td>2000</td>
+          <td>2045</td>
+          <td>15</td>
+          <td>Captain</td>
+          <td><span>Invalid ⚠️</span></td>
+          <td>
+            <a class="btn" href="list-detail.html">View List</a>
+            <a class="btn" href="list-builder.html">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Goff Warband</strong>
+          </td>
+          <td>Orks</td>
+          <td>Waaagh!</td>
+          <td>1000</td>
+          <td>990</td>
+          <td>10</td>
+          <td>Warboss</td>
+          <td><span>Valid ✓</span></td>
+          <td>
+            <a class="btn" href="list-detail.html">View List</a>
+            <a class="btn" href="list-builder.html">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
 </body>
 </html>

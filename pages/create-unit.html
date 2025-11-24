@@ -21,191 +21,244 @@
   </header>
 
   <main>
-    <div>
+    <div class="breadcrumb">
+      <a href="units.html">← Back to Units</a>
+    </div>
+
+    <div class="detail-header">
       <h2>Create New Unit</h2>
       <p>Define a new unit with its stats, weapons, and abilities</p>
     </div>
 
     <form>
       <!-- Basic Information -->
-      <div>
-        <div>
-          <h3>Basic Information</h3>
+      <div class="form-section">
+        <h3>Basic Information</h3>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="unit-name">Unit Name *</label>
+            <input type="text" id="unit-name" placeholder="e.g., Cadian Shock Troops" required>
+          </div>
+
+          <div class="form-group">
+            <label for="unit-faction">Faction *</label>
+            <select id="unit-faction" required>
+              <option value="">Select a faction...</option>
+              <option value="imperial-guard">Imperial Guard</option>
+              <option value="space-marines">Space Marines</option>
+              <option value="orks">Orks</option>
+            </select>
+          </div>
         </div>
-        <div>
-          <div>
-            <div>
-              <label for="unit-name">Unit Name *</label>
-              <input type="text" id="unit-name" placeholder="e.g., Cadian Shock Troops" required>
-            </div>
 
-            <div>
-              <label for="unit-faction">Faction *</label>
-              <select id="unit-faction" required>
-                <option value="">Select a faction...</option>
-                <option value="imperial-guard">Imperial Guard</option>
-                <option value="space-marines">Space Marines</option>
-              </select>
-            </div>
-          </div>
+        <div class="form-group">
+          <label for="unit-tags">Unit Tags (comma-separated)</label>
+          <input type="text" id="unit-tags" placeholder="e.g., Infantry, Battleline, Core">
+          <small>Tags help with filtering and army building rules</small>
+        </div>
 
-          <div>
-            <label for="unit-tags">Unit Tags (comma-separated)</label>
-            <input type="text" id="unit-tags" placeholder="e.g., Infantry, Battleline, Core">
-            <small>Tags help with filtering and army building rules</small>
-          </div>
-
-          <div>
-            <label for="unit-image">Unit Image</label>
-            <input type="file" id="unit-image" accept="image/*">
-            <small>Upload an image for this unit (optional - will appear in army lists)</small>
-          </div>
+        <div class="form-group">
+          <label for="unit-image">Unit Image</label>
+          <input type="file" id="unit-image" accept="image/*">
+          <small>Upload an image for this unit (optional - will appear in army lists)</small>
         </div>
       </div>
 
       <!-- Unit Size & Cost -->
-      <div>
-        <div>
-          <h3>Unit Size & Points</h3>
-        </div>
-        <div>
-          <div>
-            <div>
-              <label for="unit-base-size">Base Unit Size</label>
-              <input type="number" id="unit-base-size" placeholder="e.g., 5, 10" min="1" value="1">
-              <small>Starting number of models</small>
-            </div>
+      <div class="form-section">
+        <h3>Unit Size & Points</h3>
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label for="unit-base-size">Base Unit Size</label>
+            <input type="number" id="unit-base-size" placeholder="e.g., 5, 10" min="1" value="1">
+            <small>Starting number of models</small>
+          </div>
 
-            <div>
-              <label for="unit-base-cost">Base Points Cost</label>
-              <input type="number" id="unit-base-cost" placeholder="e.g., 100" min="0">
-              <small>Cost for base unit size</small>
-            </div>
+          <div class="form-group">
+            <label for="unit-base-cost">Base Points Cost</label>
+            <input type="number" id="unit-base-cost" placeholder="e.g., 100" min="0">
+            <small>Cost for base unit size</small>
+          </div>
 
-            <div>
-              <label for="unit-cost-per-model">Cost Per Additional Model</label>
-              <input type="number" id="unit-cost-per-model" placeholder="e.g., 10" min="0">
-              <small>Optional: cost to add more models</small>
-            </div>
+          <div class="form-group">
+            <label for="unit-cost-per-model">Cost Per Additional Model</label>
+            <input type="number" id="unit-cost-per-model" placeholder="e.g., 10" min="0">
+            <small>Optional: cost to add more models</small>
           </div>
         </div>
       </div>
 
       <!-- Unit Stats -->
-      <div>
-        <div>
-          <h3>Unit Statistics</h3>
-        </div>
-        <div>
-          <div>
-            <div>
-              <label for="stat-movement">Movement (M)</label>
-              <input type="text" id="stat-movement" placeholder='e.g., 6"'>
-            </div>
+      <div class="form-section">
+        <h3>Unit Statistics</h3>
+        <div class="form-grid-4">
+          <div class="form-group">
+            <label for="stat-movement">Movement (M)</label>
+            <input type="text" id="stat-movement" placeholder='e.g., 6"'>
+          </div>
 
-            <div>
-              <label for="stat-toughness">Toughness (T)</label>
-              <input type="number" id="stat-toughness" placeholder="e.g., 3" min="1">
-            </div>
+          <div class="form-group">
+            <label for="stat-toughness">Toughness (T)</label>
+            <input type="number" id="stat-toughness" placeholder="e.g., 3" min="1">
+          </div>
 
-            <div>
-              <label for="stat-save">Save (Sv)</label>
-              <input type="text" id="stat-save" placeholder="e.g., 4+">
-            </div>
+          <div class="form-group">
+            <label for="stat-save">Save (Sv)</label>
+            <input type="text" id="stat-save" placeholder="e.g., 4+">
+          </div>
 
-            <div>
-              <label for="stat-wounds">Wounds (W)</label>
-              <input type="number" id="stat-wounds" placeholder="e.g., 1" min="1">
-            </div>
+          <div class="form-group">
+            <label for="stat-wounds">Wounds (W)</label>
+            <input type="number" id="stat-wounds" placeholder="e.g., 1" min="1">
+          </div>
 
-            <div>
-              <label for="stat-leadership">Leadership (Ld)</label>
-              <input type="text" id="stat-leadership" placeholder="e.g., 7+">
-            </div>
+          <div class="form-group">
+            <label for="stat-leadership">Leadership (Ld)</label>
+            <input type="text" id="stat-leadership" placeholder="e.g., 7+">
+          </div>
 
-            <div>
-              <label for="stat-oc">Objective Control (OC)</label>
-              <input type="number" id="stat-oc" placeholder="e.g., 1" min="0">
-            </div>
+          <div class="form-group">
+            <label for="stat-oc">Objective Control (OC)</label>
+            <input type="number" id="stat-oc" placeholder="e.g., 1" min="0">
           </div>
         </div>
       </div>
 
-      <!-- Weapons (Simplified) -->
-      <div>
-        <div>
-          <h3>Weapons</h3>
-          <p>Add weapons available to this unit</p>
-        </div>
-        <div>
-          <!-- Weapon 1 -->
-          <div>
-            <h4>Weapon 1</h4>
-            
-            <div>
-              <div>
-                <label for="weapon-1-name">Weapon Name</label>
-                <input type="text" id="weapon-1-name" placeholder="e.g., Lasgun, Bolter">
-              </div>
-
-              <div>
-                <label for="weapon-1-range">Range</label>
-                <input type="text" id="weapon-1-range" placeholder='e.g., 24"'>
-              </div>
+      <!-- Weapons -->
+      <div class="form-section">
+        <h3>Weapons</h3>
+        <p>Add weapons available to this unit</p>
+        
+        <!-- Weapon 1 -->
+        <div class="form-item">
+          <h4>Weapon 1</h4>
+          
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="weapon-1-name">Weapon Name</label>
+              <input type="text" id="weapon-1-name" placeholder="e.g., Lasgun, Bolter">
             </div>
 
-            <div>
-              <div>
-                <label for="weapon-1-attacks">Attacks (A)</label>
-                <input type="text" id="weapon-1-attacks" placeholder="e.g., 2, D6">
-              </div>
-
-              <div>
-                <label for="weapon-1-strength">Strength (S)</label>
-                <input type="number" id="weapon-1-strength" placeholder="e.g., 3" min="1">
-              </div>
-
-              <div>
-                <label for="weapon-1-ap">Armor Piercing (AP)</label>
-                <input type="text" id="weapon-1-ap" placeholder="e.g., 0, -1">
-              </div>
-
-              <div>
-                <label for="weapon-1-damage">Damage (D)</label>
-                <input type="text" id="weapon-1-damage" placeholder="e.g., 1, D3">
-              </div>
-            </div>
-
-            <div>
-              <label for="weapon-1-abilities">Weapon Abilities</label>
-              <input type="text" id="weapon-1-abilities" placeholder="e.g., Rapid Fire 1, Melta 2">
+            <div class="form-group">
+              <label for="weapon-1-range">Range</label>
+              <input type="text" id="weapon-1-range" placeholder='e.g., 24"'>
             </div>
           </div>
 
-          <button type="button">+ Add Another Weapon</button>
+          <div class="form-grid-4">
+            <div class="form-group">
+              <label for="weapon-1-attacks">Attacks (A)</label>
+              <input type="text" id="weapon-1-attacks" placeholder="e.g., 2, D6">
+            </div>
+
+            <div class="form-group">
+              <label for="weapon-1-strength">Strength (S)</label>
+              <input type="number" id="weapon-1-strength" placeholder="e.g., 3" min="1">
+            </div>
+
+            <div class="form-group">
+              <label for="weapon-1-ap">Armor Piercing (AP)</label>
+              <input type="text" id="weapon-1-ap" placeholder="e.g., 0, -1">
+            </div>
+
+            <div class="form-group">
+              <label for="weapon-1-damage">Damage (D)</label>
+              <input type="text" id="weapon-1-damage" placeholder="e.g., 1, D3">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="weapon-1-abilities">Weapon Abilities</label>
+            <input type="text" id="weapon-1-abilities" placeholder="e.g., Rapid Fire 1, Melta 2">
+          </div>
         </div>
+
+        <!-- Weapon 2 -->
+        <div class="form-item">
+          <h4>Weapon 2 (Optional)</h4>
+          
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="weapon-2-name">Weapon Name</label>
+              <input type="text" id="weapon-2-name" placeholder="e.g., Plasma Gun">
+            </div>
+
+            <div class="form-group">
+              <label for="weapon-2-range">Range</label>
+              <input type="text" id="weapon-2-range" placeholder='e.g., 24"'>
+            </div>
+          </div>
+
+          <div class="form-grid-4">
+            <div class="form-group">
+              <label for="weapon-2-attacks">Attacks (A)</label>
+              <input type="text" id="weapon-2-attacks" placeholder="e.g., 1">
+            </div>
+
+            <div class="form-group">
+              <label for="weapon-2-strength">Strength (S)</label>
+              <input type="number" id="weapon-2-strength" placeholder="e.g., 7" min="1">
+            </div>
+
+            <div class="form-group">
+              <label for="weapon-2-ap">Armor Piercing (AP)</label>
+              <input type="text" id="weapon-2-ap" placeholder="e.g., -2">
+            </div>
+
+            <div class="form-group">
+              <label for="weapon-2-damage">Damage (D)</label>
+              <input type="text" id="weapon-2-damage" placeholder="e.g., 1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="weapon-2-abilities">Weapon Abilities</label>
+            <input type="text" id="weapon-2-abilities" placeholder="e.g., Rapid Fire 1, Gets Hot">
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-add">+ Add Another Weapon</button>
       </div>
 
       <!-- Abilities -->
-      <div>
-        <div>
-          <h3>Unit Abilities</h3>
-        </div>
-        <div>
-          <div>
-            <label for="unit-abilities">Abilities</label>
-            <textarea id="unit-abilities" placeholder="e.g.,&#10;Born Soldiers: Re-roll hit rolls of 1&#10;Voice of Command: Issue orders to nearby infantry"></textarea>
-            <small>List special rules and abilities this unit has</small>
-          </div>
+      <div class="form-section">
+        <h3>Unit Abilities</h3>
+        <div class="form-group">
+          <label for="unit-abilities">Abilities (one per line)</label>
+          <textarea id="unit-abilities" placeholder="e.g.,&#10;Born Soldiers: Re-roll hit rolls of 1&#10;Voice of Command: Issue orders to nearby infantry"></textarea>
+          <small>List special rules and abilities this unit has</small>
         </div>
       </div>
+
+      <!-- Transport/Attachment Rules -->
+      <div class="form-section">
+        <h3>Transport & Attachment Rules</h3>
+        <p>Optional: Define embark or attachment capabilities</p>
+        
+        <div class="form-group">
+          <label for="transport-capacity">Transport Capacity</label>
+          <input type="number" id="transport-capacity" placeholder="e.g., 10" min="0" value="0">
+          <small>Leave at 0 if not a transport</small>
+        </div>
+
+        <div class="form-group">
+          <label for="can-embark-in">Can Embark In (comma-separated unit names)</label>
+          <input type="text" id="can-embark-in" placeholder="e.g., Chimera, Leman Russ">
+        </div>
+
+        <div class="form-group">
+          <label for="can-attach-to">Can Attach To (comma-separated unit tags)</label>
+          <input type="text" id="can-attach-to" placeholder="e.g., Infantry, Battleline">
+          <small>For character units that can lead other units</small>
+        </div>
+      </div>
+
       <!-- Form Actions -->
-      <div>
-        <div>
-          <div>
-            <button type="submit">Create Unit</button>
-            <a href="units.html">Cancel</a>
-          </div>
+      <div class="form-section">
+        <div class="form-actions">
+          <button type="submit" class="btn">Create Unit</button>
+          <button type="button" class="btn btn-secondary">Save as Draft</button>
+          <a href="units.html" class="btn btn-secondary">Cancel</a>
         </div>
       </div>
     </form>

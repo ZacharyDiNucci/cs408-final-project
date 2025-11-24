@@ -21,309 +21,242 @@
   </header>
 
   <main>
-    <!-- Breadcrumb -->
-    <div>
+    <div class="breadcrumb">
       <a href="lists.html">← Back to Army Lists</a>
     </div>
 
-    <!-- Army List Header -->
-    <div>
-      <div>
-        <div>
-          <div>
-            <h2>Steel Legion Infantry Company</h2>
-            <p>Imperial Guard - Infantry Company Detachment</p>
-          </div>
-          <div>
-            <button>Export to File</button>
-            <a href="list-builder.html">Edit List</a>
-            <button>Delete</button>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div>
-          <div>
-            <p>Point Limit</p>
-            <p>1000</p>
-          </div>
-          <div>
-            <p>Current Points</p>
-            <p>995</p>
-          </div>
-          <div>
-            <p>Total Units</p>
-            <p>8</p>
-          </div>
-          <div>
-            <p>Validation</p>
-            <span>Valid ✓</span>
-          </div>
-        </div>
+    <div class="detail-header">
+      <h2>Steel Legion Infantry Company</h2>
+      <p>Imperial Guard - Infantry Company Detachment</p>
+      <div class="header-actions">
+        <a class="btn" href="#">Export to File</a>
+        <a class="btn" href="list-builder.html">Edit List</a>
+        <a class="btn" href="#">Delete</a>
       </div>
     </div>
 
-    <!-- Army Rules & Detachment -->
-    <div>
-      <div>
-        <h3>Army Rules & Detachment</h3>
-      </div>
-      <div>
-        <div>
-          <div>
-            <h4>Army Rule: Combined Arms</h4>
-            <p>Infantry units within 6" of a friendly Vehicle unit gain +1 to their hit rolls. Vehicle units within 6" of a friendly Infantry unit gain +1 to their Leadership tests.</p>
-          </div>
-
-          <div>
-            <h4>Detachment: Infantry Company</h4>
-            <p><strong>Born Soldiers:</strong> Infantry units gain +1 to hit rolls when within 6" of an Officer. Represents elite infantry formations that excel in coordinated warfare.</p>
-          </div>
-        </div>
+    <div class="content-section">
+      <h3>Army Summary</h3>
+      <div class="list-item-box">
+        <p><strong>Point Limit:</strong> 1000</p>
+        <p><strong>Current Points:</strong> 995</p>
+        <p><strong>Total Units:</strong> 8</p>
+        <p><strong>Warlord:</strong> Company Commander "Iron Hand" Brennan</p>
+        <p><strong>Status:</strong> <span>Valid ✓</span></p>
       </div>
     </div>
 
-    <!-- Warlord -->
-    <div>
-      <div>
-        <h3>Warlord</h3>
+    <div class="content-section">
+      <h3>Army Rules & Detachment</h3>
+      <div class="info-box">
+        <h4>Army Rule: Combined Arms</h4>
+        <p>Infantry units within 6" of a friendly Vehicle unit gain +1 to their hit rolls. Vehicle units within 6" 
+        of a friendly Infantry unit gain +1 to their Leadership tests.</p>
       </div>
-      <div>
-        <div>
-          <div>
-            <img src="https://placehold.co/80x80/14b8a6/ffffff?text=Commander" alt="Company Commander">
-            <!-- If no image: <div>No Image</div> -->
-          </div>
-          <div>
-            <h3>Company Commander "Iron Hand" Brennan</h3>
-            <div>
+      <div class="info-box">
+        <h4>Detachment: Infantry Company</h4>
+        <p><strong>Born Soldiers:</strong> Infantry units gain +1 to hit rolls when within 6" of an Officer. 
+        Represents elite infantry formations that excel in coordinated warfare.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h3>Characters (2 units - 90 points)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Unit Name</th>
+            <th>Tags</th>
+            <th>Points</th>
+            <th>Models</th>
+            <th>Wargear</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="https://placehold.co/60x60/14b8a6/ffffff?text=Commander" alt="Commander" class="unit-image"></td>
+            <td><strong>Company Commander "Iron Hand" Brennan</strong></td>
+            <td>
               <span>Infantry</span>
               <span>Character</span>
               <span>Warlord</span>
-            </div>
-            <p><strong>50 points</strong> | M 6" | T 3 | Sv 4+ | W 3</p>
-            <p><strong>Wargear:</strong> Bolt Pistol, Power Sword</p>
-          </div>
-          <div>
-            <a href="unit-detail.html">View Unit</a>
-          </div>
-        </div>
-      </div>
+            </td>
+            <td>50</td>
+            <td>1</td>
+            <td>Bolt Pistol, Power Sword</td>
+            <td>Warlord</td>
+            <td><a class="btn" href="unit-detail.html">Details</a></td>
+          </tr>
+          <tr>
+            <td><img src="https://placehold.co/60x60/3b82f6/ffffff?text=Psyker" alt="Psyker" class="unit-image"></td>
+            <td><strong>Primaris Psyker</strong></td>
+            <td>
+              <span>Infantry</span>
+              <span>Character</span>
+              <span>Psyker</span>
+            </td>
+            <td>40</td>
+            <td>1</td>
+            <td>Force Stave, Laspistol</td>
+            <td>Attached to: Squad Alpha</td>
+            <td><a class="btn" href="unit-detail.html">Details</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Units by Category -->
-    <div>
-      <div>
-        <h3>Characters (2 units - 90 points)</h3>
-      </div>
-      <div>
-        <ul>
-          <li>
-            <div>
-              <img src="https://placehold.co/60x60/14b8a6/ffffff?text=Commander" alt="Company Commander">
-            </div>
-            <div>
-              <h3>Company Commander "Iron Hand" Brennan</h3>
-              <div>
-                <span>Infantry</span>
-                <span>Character</span>
-                <span>Warlord</span>
-              </div>
-              <p><strong>50 points</strong> | 1 model | <strong>Wargear:</strong> Bolt Pistol, Power Sword</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">Details</a>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <img src="https://placehold.co/60x60/3b82f6/ffffff?text=Psyker" alt="Primaris Psyker">
-            </div>
-            <div>
-              <h3>Primaris Psyker</h3>
-              <div>
-                <span>Infantry</span>
-                <span>Character</span>
-                <span>Psyker</span>
-              </div>
-              <p><strong>40 points</strong> | 1 model | <strong>Wargear:</strong> Force Stave, Laspistol | <strong>Attached to:</strong> Cadian Shock Troops Squad Alpha</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">Details</a>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <div class="content-section">
+      <h3>Battleline (4 units - 330 points)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Unit Name</th>
+            <th>Tags</th>
+            <th>Points</th>
+            <th>Models</th>
+            <th>Wargear</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="https://placehold.co/60x60/14b8a6/ffffff?text=Squad+A" alt="Squad Alpha" class="unit-image"></td>
+            <td><strong>Cadian Shock Troops - Squad Alpha</strong></td>
+            <td>
+              <span>Infantry</span>
+              <span>Battleline</span>
+            </td>
+            <td>77</td>
+            <td>10</td>
+            <td>Plasma Gun, Meltagun</td>
+            <td>Leader: Primaris Psyker</td>
+            <td><a class="btn" href="unit-detail.html">Details</a></td>
+          </tr>
+          <tr>
+            <td><img src="https://placehold.co/60x60/14b8a6/ffffff?text=Squad+B" alt="Squad Bravo" class="unit-image"></td>
+            <td><strong>Cadian Shock Troops - Squad Bravo</strong></td>
+            <td>
+              <span>Infantry</span>
+              <span>Battleline</span>
+            </td>
+            <td>71</td>
+            <td>10</td>
+            <td>Grenade Launcher, Flamer</td>
+            <td>-</td>
+            <td><a class="btn" href="unit-detail.html">Details</a></td>
+          </tr>
+          <tr>
+            <td><img src="https://placehold.co/60x60/14b8a6/ffffff?text=Squad+C" alt="Squad Charlie" class="unit-image"></td>
+            <td><strong>Cadian Shock Troops - Squad Charlie</strong></td>
+            <td>
+              <span>Infantry</span>
+              <span>Battleline</span>
+            </td>
+            <td>125</td>
+            <td>20</td>
+            <td>2x Plasma Gun</td>
+            <td>In Transport: Chimera</td>
+            <td><a class="btn" href="unit-detail.html">Details</a></td>
+          </tr>
+          <tr>
+            <td><img src="https://placehold.co/60x60/a855f7/ffffff?text=Scions" alt="Scions" class="unit-image"></td>
+            <td><strong>Tempestus Scions</strong></td>
+            <td>
+              <span>Infantry</span>
+              <span>Elite</span>
+            </td>
+            <td>85</td>
+            <td>5</td>
+            <td>2x Hot-shot Volley Gun</td>
+            <td>-</td>
+            <td><a class="btn" href="unit-detail.html">Details</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div>
-      <div>
-        <h3>Battleline (4 units - 330 points)</h3>
-      </div>
-      <div>
-        <ul>
-          <li>
-            <div>
-              <img src="https://placehold.co/60x60/14b8a6/ffffff?text=Squad+A" alt="Cadian Shock Troops">
-            </div>
-            <div>
-              <h3>Cadian Shock Troops - Squad Alpha</h3>
-              <div>
-                <span>Infantry</span>
-                <span>Battleline</span>
-              </div>
-              <p><strong>77 points</strong> | 10 models | <strong>Special Weapons:</strong> Plasma Gun, Meltagun | <strong>Leader:</strong> Primaris Psyker</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">Details</a>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <img src="https://placehold.co/60x60/14b8a6/ffffff?text=Squad+B" alt="Cadian Shock Troops">
-            </div>
-            <div>
-              <h3>Cadian Shock Troops - Squad Bravo</h3>
-              <div>
-                <span>Infantry</span>
-                <span>Battleline</span>
-              </div>
-              <p><strong>71 points</strong> | 10 models | <strong>Special Weapons:</strong> Grenade Launcher, Flamer</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">Details</a>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <img src="https://placehold.co/60x60/14b8a6/ffffff?text=Squad+C" alt="Cadian Shock Troops">
-            </div>
-            <div>
-              <h3>Cadian Shock Troops - Squad Charlie</h3>
-              <div>
-                <span>Infantry</span>
-                <span>Battleline</span>
-              </div>
-              <p><strong>125 points</strong> | 20 models | <strong>Special Weapons:</strong> 2x Plasma Gun | <strong>In Transport:</strong> Chimera "Steel Rain"</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">Details</a>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <img src="https://placehold.co/60x60/a855f7/ffffff?text=Scions" alt="Tempestus Scions">
-            </div>
-            <div>
-              <h3>Tempestus Scions</h3>
-              <div>
-                <span>Infantry</span>
-                <span>Elite</span>
-              </div>
-              <p><strong>85 points</strong> | 5 models | <strong>Special Weapons:</strong> 2x Hot-shot Volley Gun</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">Details</a>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <div class="content-section">
+      <h3>Vehicles (1 unit - 85 points)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Unit Name</th>
+            <th>Tags</th>
+            <th>Points</th>
+            <th>Models</th>
+            <th>Wargear</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="https://placehold.co/60x60/3b82f6/ffffff?text=Chimera" alt="Chimera" class="unit-image"></td>
+            <td><strong>Chimera "Steel Rain"</strong></td>
+            <td>
+              <span>Vehicle</span>
+              <span>Transport</span>
+            </td>
+            <td>85</td>
+            <td>1</td>
+            <td>Multi-laser, Heavy Bolter</td>
+            <td>Embarked: Squad Charlie (20 models)</td>
+            <td><a class="btn" href="unit-detail.html">Details</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div>
-      <div>
-        <h3>Vehicles (1 unit - 85 points)</h3>
-      </div>
-      <div>
-        <ul>
-          <li>
-            <div>
-              <img src="https://placehold.co/60x60/3b82f6/ffffff?text=Chimera" alt="Chimera">
-            </div>
-            <div>
-              <h3>Chimera "Steel Rain"</h3>
-              <div>
-                <span>Vehicle</span>
-                <span>Transport</span>
-              </div>
-              <p><strong>85 points</strong> | 1 model | <strong>Capacity:</strong> 10 models | <strong>Embarked:</strong> Cadian Shock Troops Squad Charlie (20 models, takes 2 spaces each)</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">Details</a>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <div class="content-section">
+      <h3>Heavy Support (1 unit - 440 points)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Unit Name</th>
+            <th>Tags</th>
+            <th>Points</th>
+            <th>Models</th>
+            <th>Wargear</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="https://placehold.co/60x60/a855f7/ffffff?text=Russ" alt="Leman Russ" class="unit-image"></td>
+            <td><strong>Leman Russ Squadron</strong></td>
+            <td>
+              <span>Vehicle</span>
+              <span>Heavy Support</span>
+            </td>
+            <td>440</td>
+            <td>2</td>
+            <td>2x Battle Cannon, 4x Heavy Bolter</td>
+            <td>-</td>
+            <td><a class="btn" href="unit-detail.html">Details</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div>
-      <div>
-        <h3>Heavy Support (1 unit - 440 points)</h3>
-      </div>
-      <div>
-        <ul>
-          <li>
-            <div>
-              <img src="https://placehold.co/60x60/a855f7/ffffff?text=Russ" alt="Leman Russ">
-            </div>
-            <div>
-              <h3>Leman Russ Squadron</h3>
-              <div>
-                <span>Vehicle</span>
-                <span>Heavy Support</span>
-              </div>
-              <p><strong>440 points</strong> | 2 models | <strong>Loadout:</strong> 2x Battle Cannon, 4x Heavy Bolter sponsons</p>
-            </div>
-            <div>
-              <a href="unit-detail.html">Details</a>
-            </div>
-          </li>
-        </ul>
+    <div class="content-section">
+      <h3>Point Breakdown</h3>
+      <div class="list-item-box">
+        <p><strong>Characters:</strong> 90 points</p>
+        <p><strong>Battleline:</strong> 330 points</p>
+        <p><strong>Vehicles:</strong> 85 points</p>
+        <p><strong>Heavy Support:</strong> 440 points</p>
+        <hr>
+        <p><strong>Total: 995 / 1000 points</strong></p>
       </div>
     </div>
-
-    <!-- Summary & Export -->
-    <div>
-      <div>
-        <h3>List Summary</h3>
-      </div>
-      <div>
-        <div>
-          <h4>Point Breakdown</h4>
-          <div>
-            <span>Characters:</span>
-            <span>90 points</span>
-          </div>
-          <div>
-            <span>Battleline:</span>
-            <span>330 points</span>
-          </div>
-          <div>
-            <span>Vehicles:</span>
-            <span>85 points</span>
-          </div>
-          <div>
-            <span>Heavy Support:</span>
-            <span>440 points</span>
-          </div>
-          <div>
-            <span>Total:</span>
-            <span>995 / 1000 points</span>
-          </div>
-        </div>
-
-        <div>
-          <button>Export as Text File</button>
-          <button>Copy to Clipboard</button>
-          <button>Print List</button>
-        </div>
-      </div>
-    </div>
-
   </main>
 </body>
 </html>

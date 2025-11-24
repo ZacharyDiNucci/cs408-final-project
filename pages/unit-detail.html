@@ -21,287 +21,224 @@
   </header>
 
   <main>
-    <!-- Breadcrumb -->
-    <div>
+    <div class="breadcrumb">
       <a href="units.html">← Back to Units</a>
     </div>
 
-    <!-- Unit Header -->
-    <div>
-      <div>
-        <div>
-          <div>
-            <img src="https://placehold.co/120x120/14b8a6/ffffff?text=Cadians" alt="Cadian Shock Troops">
-            <div>
-              <h2>Cadian Shock Troops</h2>
-              <p>Imperial Guard Infantry Squad</p>
-            </div>
-          </div>
-          <div>
-            <a href="list-builder.html">Add to Army</a>
-            <button>Edit Unit</button>
-          </div>
-        </div>
+    <div class="detail-header">
+      <h2>Cadian Shock Troops</h2>
+      <p>Imperial Guard Infantry Squad</p>
+      <div class="tags">
+        <span>Infantry</span>
+        <span>Battleline</span>
+        <span>Imperial Guard</span>
       </div>
-      <div>
-        <div>
-          <span>Infantry</span>
-          <span>Battleline</span>
-          <span>Imperial Guard</span>
-        </div>
-        <p>The backbone of the Imperial Guard, Cadian Shock Troops are renowned throughout the galaxy for their discipline, courage, and tactical acumen. Raised on the fortress world of Cadia, these soldiers are trained from birth to be the Emperor's finest conventional warriors.</p>
+      <p class="description">
+        The backbone of the Imperial Guard, Cadian Shock Troops are renowned throughout the galaxy for their discipline, 
+        courage, and tactical acumen. Raised on the fortress world of Cadia, these soldiers are trained from birth to be 
+        the Emperor's finest conventional warriors.
+      </p>
+      <div class="header-actions">
+        <a class="btn" href="list-builder.html">Add to Army</a>
+        <a class="btn" href="#">Edit Unit</a>
       </div>
     </div>
 
-    <!-- Unit Cost & Size -->
-    <div>
-      <div>
-        <h3>Unit Composition & Cost</h3>
-      </div>
-      <div>
-        <div>
-          <div>
-            <p>Base Unit Size</p>
-            <p>10 models</p>
-          </div>
-          <div>
-            <p>Base Cost</p>
-            <p>65 points</p>
-          </div>
-          <div>
-            <p>Cost Per Model</p>
-            <p>+6 points</p>
-          </div>
-        </div>
-        <div>
-          <p><strong>Unit Size Options:</strong> This unit can be fielded as 10 or 20 models. At 20 models, the total cost is 125 points.</p>
-        </div>
+    <div class="content-section">
+      <h3>Unit Composition & Cost</h3>
+      <div class="list-item-box">
+        <p><strong>Base Unit Size:</strong> 10 models</p>
+        <p><strong>Base Cost:</strong> 65 points</p>
+        <p><strong>Cost Per Model:</strong> +6 points</p>
+        <p>This unit can be fielded as 10 or 20 models. At 20 models, the total cost is 125 points.</p>
       </div>
     </div>
 
-    <!-- Unit Statistics -->
-    <div>
-      <div>
-        <h3>Unit Statistics</h3>
-      </div>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Model</th>
-              <th>M</th>
-              <th>T</th>
-              <th>Sv</th>
-              <th>W</th>
-              <th>Ld</th>
-              <th>OC</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Guardsman</strong></td>
-              <td>6"</td>
-              <td>3</td>
-              <td>4+</td>
-              <td>1</td>
-              <td>7+</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td><strong>Sergeant</strong></td>
-              <td>6"</td>
-              <td>3</td>
-              <td>4+</td>
-              <td>1</td>
-              <td>7+</td>
-              <td>2</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="content-section">
+      <h3>Unit Statistics</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>M</th>
+            <th>T</th>
+            <th>Sv</th>
+            <th>W</th>
+            <th>Ld</th>
+            <th>OC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Guardsman</strong></td>
+            <td>6"</td>
+            <td>3</td>
+            <td>4+</td>
+            <td>1</td>
+            <td>7+</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td><strong>Sergeant</strong></td>
+            <td>6"</td>
+            <td>3</td>
+            <td>4+</td>
+            <td>1</td>
+            <td>7+</td>
+            <td>2</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Weapons -->
-    <div>
-      <div>
-        <h3>Weapons</h3>
-      </div>
-      <div>
-        <h4>Ranged Weapons</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Weapon</th>
-              <th>Range</th>
-              <th>A</th>
-              <th>S</th>
-              <th>AP</th>
-              <th>D</th>
-              <th>Abilities</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Lasgun</strong></td>
-              <td>24"</td>
-              <td>2</td>
-              <td>3</td>
-              <td>0</td>
-              <td>1</td>
-              <td>Rapid Fire 1</td>
-            </tr>
-            <tr>
-              <td><strong>Plasma Gun</strong> (Option)</td>
-              <td>24"</td>
-              <td>1</td>
-              <td>7</td>
-              <td>-2</td>
-              <td>1</td>
-              <td>Rapid Fire 1, Gets Hot</td>
-            </tr>
-            <tr>
-              <td><strong>Meltagun</strong> (Option)</td>
-              <td>12"</td>
-              <td>1</td>
-              <td>9</td>
-              <td>-4</td>
-              <td>D6</td>
-              <td>Melta 2</td>
-            </tr>
-            <tr>
-              <td><strong>Flamer</strong> (Option)</td>
-              <td>12"</td>
-              <td>D6</td>
-              <td>4</td>
-              <td>0</td>
-              <td>1</td>
-              <td>Ignores Cover, Torrent</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="content-section">
+      <h3>Weapons</h3>
+      <h4>Ranged Weapons</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Weapon</th>
+            <th>Range</th>
+            <th>A</th>
+            <th>S</th>
+            <th>AP</th>
+            <th>D</th>
+            <th>Abilities</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lasgun</strong></td>
+            <td>24"</td>
+            <td>2</td>
+            <td>3</td>
+            <td>0</td>
+            <td>1</td>
+            <td>Rapid Fire 1</td>
+          </tr>
+          <tr>
+            <td><strong>Plasma Gun</strong> (Option)</td>
+            <td>24"</td>
+            <td>1</td>
+            <td>7</td>
+            <td>-2</td>
+            <td>1</td>
+            <td>Rapid Fire 1, Gets Hot</td>
+          </tr>
+          <tr>
+            <td><strong>Meltagun</strong> (Option)</td>
+            <td>12"</td>
+            <td>1</td>
+            <td>9</td>
+            <td>-4</td>
+            <td>D6</td>
+            <td>Melta 2</td>
+          </tr>
+          <tr>
+            <td><strong>Flamer</strong> (Option)</td>
+            <td>12"</td>
+            <td>D6</td>
+            <td>4</td>
+            <td>0</td>
+            <td>1</td>
+            <td>Ignores Cover, Torrent</td>
+          </tr>
+        </tbody>
+      </table>
 
-        <h4>Melee Weapons</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Weapon</th>
-              <th>Range</th>
-              <th>A</th>
-              <th>S</th>
-              <th>AP</th>
-              <th>D</th>
-              <th>Abilities</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Close Combat Weapon</strong></td>
-              <td>Melee</td>
-              <td>1</td>
-              <td>3</td>
-              <td>0</td>
-              <td>1</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td><strong>Chainsword</strong> (Sergeant)</td>
-              <td>Melee</td>
-              <td>3</td>
-              <td>3</td>
-              <td>0</td>
-              <td>1</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td><strong>Power Weapon</strong> (Sergeant Option)</td>
-              <td>Melee</td>
-              <td>2</td>
-              <td>4</td>
-              <td>-2</td>
-              <td>1</td>
-              <td>-</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <h4>Melee Weapons</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Weapon</th>
+            <th>Range</th>
+            <th>A</th>
+            <th>S</th>
+            <th>AP</th>
+            <th>D</th>
+            <th>Abilities</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Close Combat Weapon</strong></td>
+            <td>Melee</td>
+            <td>1</td>
+            <td>3</td>
+            <td>0</td>
+            <td>1</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><strong>Chainsword</strong> (Sergeant)</td>
+            <td>Melee</td>
+            <td>3</td>
+            <td>3</td>
+            <td>0</td>
+            <td>1</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><strong>Power Weapon</strong> (Sergeant Option)</td>
+            <td>Melee</td>
+            <td>2</td>
+            <td>4</td>
+            <td>-2</td>
+            <td>1</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Unit Abilities -->
-    <div>
-      <div>
-        <h3>Unit Abilities</h3>
-      </div>
-      <div>
-        <div>
+    <div class="content-section">
+      <h3>Unit Abilities</h3>
+      <div class="item-list">
+        <div class="list-item-box">
           <h4>Born Soldiers</h4>
-          <p>You can re-roll hit rolls of 1 for models in this unit. The Cadian training regimen is legendary, producing soldiers who rarely miss their mark.</p>
+          <p>You can re-roll hit rolls of 1 for models in this unit. The Cadian training regimen is legendary, 
+          producing soldiers who rarely miss their mark.</p>
         </div>
-
-        <div>
+        
+        <div class="list-item-box">
           <h4>Voice of Command</h4>
-          <p>The Sergeant in this unit can issue orders to nearby Infantry units at the start of your Command phase. Orders include: Take Aim!, Bring it Down!, or Fix Bayonets!</p>
+          <p>The Sergeant in this unit can issue orders to nearby Infantry units at the start of your Command phase. 
+          Orders include: Take Aim!, Bring it Down!, or Fix Bayonets!</p>
         </div>
-
-        <div>
+        
+        <div class="list-item-box">
           <h4>For the Emperor!</h4>
-          <p>Once per battle, when this unit is selected to fight, you can re-roll all hit and wound rolls until the end of the phase. They will not falter in the face of the enemy.</p>
+          <p>Once per battle, when this unit is selected to fight, you can re-roll all hit and wound rolls until 
+          the end of the phase. They will not falter in the face of the enemy.</p>
         </div>
       </div>
     </div>
 
-    <!-- Transport & Attachment Rules -->
-    <div>
-      <div>
-        <h3>Transport & Attachment</h3>
-      </div>
-      <div>
-        <div>
-          <div>
-            <h4>Can Embark In:</h4>
-            <ul>
-              <li>
-                <strong>Chimera</strong> - 10 models capacity
-              </li>
-              <li>
-                <strong>Taurox</strong> - 10 models capacity
-              </li>
-              <li>
-                <strong>Valkyrie</strong> - 12 models capacity
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>Can Attach:</h4>
-            <p>
-              This unit can have the following Character units attached to it:<br><br>
-              • <strong>Company Commander</strong><br>
-              • <strong>Platoon Commander</strong><br>
-              • <strong>Primaris Psyker</strong>
-            </p>
-          </div>
+    <div class="content-section">
+      <h3>Transport & Attachment</h3>
+      <h4>Can Embark In:</h4>
+      <div class="item-list">
+        <div class="list-item-box">
+          <p><strong>Chimera</strong> - 10 models capacity</p>
+        </div>
+        <div class="list-item-box">
+          <p><strong>Taurox</strong> - 10 models capacity</p>
+        </div>
+        <div class="list-item-box">
+          <p><strong>Valkyrie</strong> - 12 models capacity</p>
         </div>
       </div>
-    </div>
 
-    <!-- Keywords & Tags -->
-    <div>
-      <div>
-        <h3>Keywords & Tags</h3>
-      </div>
-      <div>
-        <div>
-          <span>Infantry</span>
-          <span>Battleline</span>
-          <span>Core</span>
-          <span>Regiment</span>
-          <span>Cadian</span>
-          <span>Imperium</span>
-          <span>Astra Militarum</span>
-        </div>
+      <h4>Can Attach:</h4>
+      <div class="list-item-box">
+        <p>This unit can have the following Character units attached to it:</p>
+        <ul>
+          <li><strong>Company Commander</strong></li>
+          <li><strong>Platoon Commander</strong></li>
+          <li><strong>Primaris Psyker</strong></li>
+        </ul>
       </div>
     </div>
-
   </main>
 </body>
 </html>
