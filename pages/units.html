@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Units - Wargame List Builder</title>
   <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js"></script>
 </head>
 <body>
   <header>
@@ -20,128 +21,189 @@
     </nav>
   </header>
 
-<main>
-  <div class="center">
-    <div>
-      <h2>All Units</h2>
-      <p>Browse and manage units from all factions</p>
+  <main>
+    <div class="center">
+      <div>
+        <h2>Units</h2>
+        <p>Manage your army units and their stats</p>
+      </div>
+      <div>
+        <a class="btn" href="create-unit.html">+ Create Unit</a>
+      </div>
     </div>
-    <div>
-      <a class="btn" href="create-unit.html">+ Create Unit</a>
-    </div>
-  </div>
 
-  <div class="table-container">
-    <div>
-      <label for="search">Search Units</label>
-      <input type="text" id="search" placeholder="Search by name...">
+    <div class="table-container">
+      <div class="form-grid-2">
+        <div>
+          <label for="search">Search Units</label>
+          <input type="text" id="search" placeholder="Search by name or tags...">
+        </div>
+        
+        <div>
+          <label for="faction-filter">Filter by Faction</label>
+          <select id="faction-filter">
+            <option value="">All Factions</option>
+            <!-- Factions will be loaded here -->
+          </select>
+        </div>
+      </div>
+      
+      <div id="units-table-container">
+        <!-- Table will be inserted here by JavaScript -->
+        <p>Loading units...</p>
+      </div>
     </div>
-    
-    <table>
-      <thead>
-        <tr>
-          <th>Unit Name</th>
-          <th>Faction</th>
-          <th>Tags</th>
-          <th>Points</th>
-          <th>Models</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <strong>Cadian Shock Troops</strong>
-          </td>
-          <td>Imperial Guard</td>
-          <td>
-            <span>Infantry</span>
-            <span>Battleline</span>
-          </td>
-          <td>65</td>
-          <td>10</td>
-          <td>
-            <a class="btn" href="unit-detail.html">View Details</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Leman Russ Battle Tank</strong>
-          </td>
-          <td>Imperial Guard</td>
-          <td>
-            <span>Vehicle</span>
-            <span>Heavy Support</span>
-          </td>
-          <td>180</td>
-          <td>1</td>
-          <td>
-            <a class="btn" href="unit-detail.html">View Details</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Company Commander</strong>
-          </td>
-          <td>Imperial Guard</td>
-          <td>
-            <span>Infantry</span>
-            <span>Character</span>
-          </td>
-          <td>50</td>
-          <td>1</td>
-          <td>
-            <a class="btn" href="unit-detail.html">View Details</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Intercessor Squad</strong>
-          </td>
-          <td>Space Marines</td>
-          <td>
-            <span>Infantry</span>
-            <span>Battleline</span>
-          </td>
-          <td>90</td>
-          <td>5</td>
-          <td>
-            <a class="btn" href="unit-detail.html">View Details</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Captain in Terminator Armour</strong>
-          </td>
-          <td>Space Marines</td>
-          <td>
-            <span>Infantry</span>
-            <span>Character</span>
-          </td>
-          <td>95</td>
-          <td>1</td>
-          <td>
-            <a class="btn" href="unit-detail.html">View Details</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Boyz</strong>
-          </td>
-          <td>Orks</td>
-          <td>
-            <span>Infantry</span>
-            <span>Battleline</span>
-          </td>
-          <td>90</td>
-          <td>10</td>
-          <td>
-            <a class="btn" href="unit-detail.html">View Details</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</main>
+  </main>
+
+  <script>
+    // Page-specific JavaScript for units.html
+    let allUnits = [];
+    let allFactions = [];
+    let factionMap = {}; // Map faction_id to faction name
+
+    // Load units when page loads
+    window.addEventListener('DOMContentLoaded', async () => {
+      await loadFactions();
+      await loadUnits();
+      setupFilters();
+    });
+
+    async function loadFactions() {
+      try {
+        allFactions = await getAllFactions();
+        
+        // Create faction map for quick lookup
+        allFactions.forEach(faction => {
+          factionMap[faction.faction_id] = faction.name;
+        });
+
+        // Populate faction filter dropdown
+        const select = document.getElementById('faction-filter');
+        allFactions.forEach(faction => {
+          const option = document.createElement('option');
+          option.value = faction.faction_id;
+          option.textContent = faction.name;
+          select.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error loading factions:', error);
+      }
+    }
+
+    async function loadUnits() {
+      try {
+        allUnits = await getAllUnits();
+        displayUnits(allUnits);
+      } catch (error) {
+        displayError('Failed to load units. Please try again later.', 'units-table-container');
+      }
+    }
+
+    function displayUnits(units) {
+      const container = document.getElementById('units-table-container');
+      
+      if (!units || units.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <h3>No Units Found</h3>
+            <p>Create your first unit to get started!</p>
+            <a class="btn" href="create-unit.html">+ Create Unit</a>
+          </div>
+        `;
+        return;
+      }
+
+      let tableHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Unit Name</th>
+              <th>Faction</th>
+              <th>Tags</th>
+              <th>Points</th>
+              <th>Models</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      units.forEach(unit => {
+        const tagsHTML = unit.tags && unit.tags.length > 0 
+          ? unit.tags.map(tag => `<span>${tag}</span>`).join('')
+          : '<span>None</span>';
+
+        const factionName = factionMap[unit.faction_id] || 'Unknown Faction';
+
+        tableHTML += `
+          <tr>
+            <td><strong>${unit.name || 'Unnamed Unit'}</strong></td>
+            <td>${factionName}</td>
+            <td>${tagsHTML}</td>
+            <td>${unit.base_cost || 0} pts</td>
+            <td>${unit.base_size || 1}</td>
+            <td>
+              <a class="btn" href="unit-detail.html?id=${unit.unit_id}">View Details</a>
+              <button class="btn btn-secondary" onclick="deleteUnitConfirm('${unit.unit_id}', '${unit.name}')">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      tableHTML += `
+          </tbody>
+        </table>
+      `;
+
+      container.innerHTML = tableHTML;
+    }
+
+    function setupFilters() {
+      const searchInput = document.getElementById('search');
+      const factionFilter = document.getElementById('faction-filter');
+
+      searchInput.addEventListener('input', applyFilters);
+      factionFilter.addEventListener('change', applyFilters);
+    }
+
+    function applyFilters() {
+      const searchTerm = document.getElementById('search').value.toLowerCase();
+      const selectedFaction = document.getElementById('faction-filter').value;
+
+      let filtered = allUnits;
+
+      // Apply faction filter
+      if (selectedFaction) {
+        filtered = filtered.filter(unit => unit.faction_id === selectedFaction);
+      }
+
+      // Apply search filter
+      if (searchTerm) {
+        filtered = filtered.filter(unit => {
+          const name = (unit.name || '').toLowerCase();
+          const tags = (unit.tags || []).join(' ').toLowerCase();
+          const factionName = (factionMap[unit.faction_id] || '').toLowerCase();
+          
+          return name.includes(searchTerm) || 
+                 tags.includes(searchTerm) ||
+                 factionName.includes(searchTerm);
+        });
+      }
+
+      displayUnits(filtered);
+    }
+
+    async function deleteUnitConfirm(unitId, unitName) {
+      if (confirm(`Are you sure you want to delete "${unitName}"? This cannot be undone.`)) {
+        try {
+          await deleteUnit(unitId);
+          displaySuccess('Unit deleted successfully!');
+          await loadUnits(); // Reload the list
+        } catch (error) {
+          displayError('Failed to delete unit. It may be used in army lists.');
+        }
+      }
+    }
+  </script>
 </body>
 </html>

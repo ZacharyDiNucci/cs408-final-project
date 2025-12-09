@@ -29,7 +29,6 @@ async function getFactionById(factionId) {
 
 async function createFaction(factionData) {
     try {
-        console.log('Sending faction data:', factionData); // Add this line
         const response = await fetch(`${API_BASE_URL}/factions`, {
             method: 'PUT',
             headers: {
@@ -37,14 +36,8 @@ async function createFaction(factionData) {
             },
             body: JSON.stringify(factionData)
         });
-        
-        const responseData = await response.json(); // Add this line
-        console.log('Response data:', responseData); // Add this line
-        
-        if (!response.ok) {
-            throw new Error(responseData.error || 'Failed to create faction');
-        }
-        return responseData;
+        if (!response.ok) throw new Error('Failed to create faction');
+        return await response.json();
     } catch (error) {
         console.error('Error creating faction:', error);
         throw error;
@@ -73,15 +66,11 @@ async function updateFaction(factionId, factionData) {
 
 async function deleteFaction(factionId) {
     try {
-        console.log('Deleting faction:', factionId); // Add this
         const response = await fetch(`${API_BASE_URL}/factions/${factionId}`, {
             method: 'DELETE'
         });
-        const responseData = await response.json(); // Add this
-        console.log('Delete response:', responseData); // Add this
-        
-        if (!response.ok) throw new Error(responseData.error || 'Failed to delete faction');
-        return responseData;
+        if (!response.ok) throw new Error('Failed to delete faction');
+        return await response.json();
     } catch (error) {
         console.error('Error deleting faction:', error);
         throw error;
@@ -147,6 +136,226 @@ async function deleteDetachment(detachmentId) {
         throw error;
     }
 }
+
+// ============================================
+// UNIT API FUNCTIONS
+// ============================================
+
+async function getAllUnits(factionId = null) {
+    try {
+        let url = `${API_BASE_URL}/units`;
+        if (factionId) {
+            url += `?faction_id=${factionId}`;
+        }
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Failed to fetch units');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching units:', error);
+        throw error;
+    }
+}
+
+async function getUnitById(unitId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/units/${unitId}`);
+        if (!response.ok) throw new Error('Failed to fetch unit');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching unit:', error);
+        throw error;
+    }
+}
+
+async function createUnit(unitData) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/units`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(unitData)
+        });
+        if (!response.ok) throw new Error('Failed to create unit');
+        return await response.json();
+    } catch (error) {
+        console.error('Error creating unit:', error);
+        throw error;
+    }
+}
+
+async function updateUnit(unitId, unitData) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/units`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                unit_id: unitId,
+                ...unitData
+            })
+        });
+        if (!response.ok) throw new Error('Failed to update unit');
+        return await response.json();
+    } catch (error) {
+        console.error('Error updating unit:', error);
+        throw error;
+    }
+}
+
+async function deleteUnit(unitId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/units/${unitId}`, {
+            method: 'DELETE'
+        });
+        if (!response.ok) throw new Error('Failed to delete unit');
+        return await response.json();
+    } catch (error) {
+        console.error('Error deleting unit:', error);
+        throw error;
+    }
+}
+
+// ============================================
+// ARMY LIST API FUNCTIONS
+// ============================================
+
+async function getAllLists() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/lists`);
+        if (!response.ok) throw new Error('Failed to fetch lists');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching lists:', error);
+        throw error;
+    }
+}
+
+async function getListById(listId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/lists/${listId}`);
+        if (!response.ok) throw new Error('Failed to fetch list');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching list:', error);
+        throw error;
+    }
+}
+
+async function createList(listData) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/lists`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(listData)
+        });
+        if (!response.ok) throw new Error('Failed to create list');
+        return await response.json();
+    } catch (error) {
+        console.error('Error creating list:', error);
+        throw error;
+    }
+}
+
+async function updateList(listId, listData) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/lists`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                list_id: listId,
+                ...listData
+            })
+        });
+        if (!response.ok) throw new Error('Failed to update list');
+        return await response.json();
+    } catch (error) {
+        console.error('Error updating list:', error);
+        throw error;
+    }
+}
+
+async function deleteList(listId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/lists/${listId}`, {
+            method: 'DELETE'
+        });
+        if (!response.ok) throw new Error('Failed to delete list');
+        return await response.json();
+    } catch (error) {
+        console.error('Error deleting list:', error);
+        throw error;
+    }
+}
+
+// ============================================
+// LIST UNITS API FUNCTIONS
+// ============================================
+
+async function getListUnits(listId = null) {
+    try {
+        let url = `${API_BASE_URL}/list-units`;
+        if (listId) {
+            url += `?list_id=${listId}`;
+        }
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Failed to fetch list units');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching list units:', error);
+        throw error;
+    }
+}
+
+async function getListUnitById(listUnitId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/list-units/${listUnitId}`);
+        if (!response.ok) throw new Error('Failed to fetch list unit');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching list unit:', error);
+        throw error;
+    }
+}
+
+async function addUnitToList(listUnitData) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/list-units`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(listUnitData)
+        });
+        if (!response.ok) throw new Error('Failed to add unit to list');
+        return await response.json();
+    } catch (error) {
+        console.error('Error adding unit to list:', error);
+        throw error;
+    }
+}
+
+async function removeUnitFromList(listUnitId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/list-units/${listUnitId}`, {
+            method: 'DELETE'
+        });
+        if (!response.ok) throw new Error('Failed to remove unit from list');
+        return await response.json();
+    } catch (error) {
+        console.error('Error removing unit from list:', error);
+        throw error;
+    }
+}
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
 
 function displayError(message, elementId = null) {
     console.error(message);

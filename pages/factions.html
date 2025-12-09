@@ -49,7 +49,7 @@
 
   </main>
 
-  <script>
+<script>
     // Page-specific JavaScript for factions.html
     let allFactions = [];
 
@@ -110,7 +110,6 @@
     }
 
     function displayFactions(factions) {
-      
       const container = document.getElementById('factions-table-container');
       
       if (!factions || factions.length === 0) {
@@ -139,8 +138,6 @@
       `;
 
       factions.forEach(faction => {
-        console.log('Faction data:', faction);
-
         const tagsHTML = faction.tags && faction.tags.length > 0 
           ? faction.tags.map(tag => `<span>${tag}</span>`).join('')
           : '<span>None</span>';
@@ -160,7 +157,7 @@
             <td>${faction.army_rule_name || 'No army rule'}</td>
             <td>${detachmentsHTML}</td>
             <td>
-              <a class="btn" href="faction-detail.html?id=${faction.faction_id}">Details</a>
+              <a class="btn" href="faction-detail.html?id=${faction.faction_id}">View Details</a>
               <button class="btn btn-secondary" onclick="deleteFactionConfirm('${faction.faction_id}', '${faction.name}')">Delete</button>
             </td>
           </tr>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unit Details - Wargame List Builder</title>
   <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js"></script>
 </head>
 <body>
   <header>
@@ -25,220 +26,330 @@
       <a href="units.html">← Back to Units</a>
     </div>
 
-    <div class="detail-header">
-      <h2>Cadian Shock Troops</h2>
-      <p>Imperial Guard Infantry Squad</p>
-      <div class="tags">
-        <span>Infantry</span>
-        <span>Battleline</span>
-        <span>Imperial Guard</span>
-      </div>
-      <p class="description">
-        The backbone of the Imperial Guard, Cadian Shock Troops are renowned throughout the galaxy for their discipline, 
-        courage, and tactical acumen. Raised on the fortress world of Cadia, these soldiers are trained from birth to be 
-        the Emperor's finest conventional warriors.
-      </p>
-      <div class="header-actions">
-        <a class="btn" href="list-builder.html">Add to Army</a>
-        <a class="btn" href="#">Edit Unit</a>
-      </div>
+    <div id="loading-message">
+      <p>Loading unit details...</p>
     </div>
 
-    <div class="content-section">
-      <h3>Unit Composition & Cost</h3>
-      <div class="list-item-box">
-        <p><strong>Base Unit Size:</strong> 10 models</p>
-        <p><strong>Base Cost:</strong> 65 points</p>
-        <p><strong>Cost Per Model:</strong> +6 points</p>
-        <p>This unit can be fielded as 10 or 20 models. At 20 models, the total cost is 125 points.</p>
-      </div>
-    </div>
-
-    <div class="content-section">
-      <h3>Unit Statistics</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>M</th>
-            <th>T</th>
-            <th>Sv</th>
-            <th>W</th>
-            <th>Ld</th>
-            <th>OC</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Guardsman</strong></td>
-            <td>6"</td>
-            <td>3</td>
-            <td>4+</td>
-            <td>1</td>
-            <td>7+</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td><strong>Sergeant</strong></td>
-            <td>6"</td>
-            <td>3</td>
-            <td>4+</td>
-            <td>1</td>
-            <td>7+</td>
-            <td>2</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="content-section">
-      <h3>Weapons</h3>
-      <h4>Ranged Weapons</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Weapon</th>
-            <th>Range</th>
-            <th>A</th>
-            <th>S</th>
-            <th>AP</th>
-            <th>D</th>
-            <th>Abilities</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Lasgun</strong></td>
-            <td>24"</td>
-            <td>2</td>
-            <td>3</td>
-            <td>0</td>
-            <td>1</td>
-            <td>Rapid Fire 1</td>
-          </tr>
-          <tr>
-            <td><strong>Plasma Gun</strong> (Option)</td>
-            <td>24"</td>
-            <td>1</td>
-            <td>7</td>
-            <td>-2</td>
-            <td>1</td>
-            <td>Rapid Fire 1, Gets Hot</td>
-          </tr>
-          <tr>
-            <td><strong>Meltagun</strong> (Option)</td>
-            <td>12"</td>
-            <td>1</td>
-            <td>9</td>
-            <td>-4</td>
-            <td>D6</td>
-            <td>Melta 2</td>
-          </tr>
-          <tr>
-            <td><strong>Flamer</strong> (Option)</td>
-            <td>12"</td>
-            <td>D6</td>
-            <td>4</td>
-            <td>0</td>
-            <td>1</td>
-            <td>Ignores Cover, Torrent</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h4>Melee Weapons</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Weapon</th>
-            <th>Range</th>
-            <th>A</th>
-            <th>S</th>
-            <th>AP</th>
-            <th>D</th>
-            <th>Abilities</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Close Combat Weapon</strong></td>
-            <td>Melee</td>
-            <td>1</td>
-            <td>3</td>
-            <td>0</td>
-            <td>1</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td><strong>Chainsword</strong> (Sergeant)</td>
-            <td>Melee</td>
-            <td>3</td>
-            <td>3</td>
-            <td>0</td>
-            <td>1</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td><strong>Power Weapon</strong> (Sergeant Option)</td>
-            <td>Melee</td>
-            <td>2</td>
-            <td>4</td>
-            <td>-2</td>
-            <td>1</td>
-            <td>-</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="content-section">
-      <h3>Unit Abilities</h3>
-      <div class="item-list">
-        <div class="list-item-box">
-          <h4>Born Soldiers</h4>
-          <p>You can re-roll hit rolls of 1 for models in this unit. The Cadian training regimen is legendary, 
-          producing soldiers who rarely miss their mark.</p>
+    <div id="unit-content" style="display: none;">
+      <div class="detail-header">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <img id="unit-image" src="" alt="" class="unit-image-large" style="display: none;">
+          <div>
+            <h2 id="unit-name">Loading...</h2>
+            <p id="unit-faction"></p>
+          </div>
         </div>
-        
-        <div class="list-item-box">
-          <h4>Voice of Command</h4>
-          <p>The Sergeant in this unit can issue orders to nearby Infantry units at the start of your Command phase. 
-          Orders include: Take Aim!, Bring it Down!, or Fix Bayonets!</p>
+        <div class="tags" id="unit-tags"></div>
+        <div class="header-actions">
+          <a class="btn" href="create-unit.html" id="edit-unit-link">Edit Unit</a>
         </div>
-        
-        <div class="list-item-box">
-          <h4>For the Emperor!</h4>
-          <p>Once per battle, when this unit is selected to fight, you can re-roll all hit and wound rolls until 
-          the end of the phase. They will not falter in the face of the enemy.</p>
+      </div>
+
+      <!-- Points & Size -->
+      <div class="content-section">
+        <h3>Points & Size</h3>
+        <div class="info-box">
+          <div class="summary-stats">
+            <div class="stat-item">
+              <span class="stat-label">Base Size</span>
+              <span class="stat-value" id="base-size">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Base Cost</span>
+              <span class="stat-value" id="base-cost">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Cost Per Model</span>
+              <span class="stat-value" id="cost-per-model">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unit Stats -->
+      <div class="content-section">
+        <h3>Unit Statistics</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>M</th>
+                <th>T</th>
+                <th>Sv</th>
+                <th>W</th>
+                <th>Ld</th>
+                <th>OC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="stats-row">
+                <td id="stat-m">-</td>
+                <td id="stat-t">-</td>
+                <td id="stat-sv">-</td>
+                <td id="stat-w">-</td>
+                <td id="stat-ld">-</td>
+                <td id="stat-oc">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Weapons -->
+      <div class="content-section">
+        <h3>Weapons</h3>
+        <div id="weapons-container">
+          <!-- Weapons will be displayed here -->
+        </div>
+      </div>
+
+      <!-- Abilities -->
+      <div class="content-section">
+        <h3>Unit Abilities</h3>
+        <div class="info-box" id="abilities-container">
+          <!-- Abilities will be displayed here -->
+        </div>
+      </div>
+
+      <!-- Transport & Attachment -->
+      <div class="content-section" id="transport-section" style="display: none;">
+        <h3>Transport & Attachment Rules</h3>
+        <div class="item-list">
+          <div class="list-item-box" id="transport-box" style="display: none;">
+            <h4>Transport Capacity</h4>
+            <p id="transport-capacity">-</p>
+          </div>
+          
+          <div class="list-item-box" id="embark-box" style="display: none;">
+            <h4>Can Embark In</h4>
+            <p id="can-embark-in">-</p>
+          </div>
+          
+          <div class="list-item-box" id="attach-box" style="display: none;">
+            <h4>Can Attach To</h4>
+            <p id="can-attach-to">-</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="content-section">
-      <h3>Transport & Attachment</h3>
-      <h4>Can Embark In:</h4>
-      <div class="item-list">
-        <div class="list-item-box">
-          <p><strong>Chimera</strong> - 10 models capacity</p>
-        </div>
-        <div class="list-item-box">
-          <p><strong>Taurox</strong> - 10 models capacity</p>
-        </div>
-        <div class="list-item-box">
-          <p><strong>Valkyrie</strong> - 12 models capacity</p>
-        </div>
-      </div>
-
-      <h4>Can Attach:</h4>
-      <div class="list-item-box">
-        <p>This unit can have the following Character units attached to it:</p>
-        <ul>
-          <li><strong>Company Commander</strong></li>
-          <li><strong>Platoon Commander</strong></li>
-          <li><strong>Primaris Psyker</strong></li>
-        </ul>
+    <div id="error-message" style="display: none;">
+      <div class="alert alert-warning">
+        <p><strong>Error:</strong> <span id="error-text"></span></p>
+        <a class="btn" href="units.html">Back to Units</a>
       </div>
     </div>
   </main>
+
+  <script>
+    let currentUnit = null;
+    let currentFaction = null;
+
+    // Get unit ID from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const unitId = urlParams.get('id');
+
+    // Load unit data when page loads
+    window.addEventListener('DOMContentLoaded', async () => {
+      if (!unitId) {
+        showError('No unit ID provided');
+        return;
+      }
+      
+      await loadUnitDetails();
+    });
+
+    async function loadUnitDetails() {
+      try {
+        // Load unit data
+        currentUnit = await getUnitById(unitId);
+        
+        if (!currentUnit) {
+          showError('Unit not found');
+          return;
+        }
+
+        // Load faction data
+        if (currentUnit.faction_id) {
+          try {
+            currentFaction = await getFactionById(currentUnit.faction_id);
+          } catch (error) {
+            console.error('Error loading faction:', error);
+          }
+        }
+
+        // Display everything
+        displayUnit();
+        displayStats();
+        displayWeapons();
+        displayAbilities();
+        displayTransportRules();
+
+        // Show content, hide loading
+        document.getElementById('loading-message').style.display = 'none';
+        document.getElementById('unit-content').style.display = 'block';
+
+      } catch (error) {
+        console.error('Error loading unit details:', error);
+        showError('Failed to load unit details');
+      }
+    }
+
+    function displayUnit() {
+      // Basic info
+      document.getElementById('unit-name').textContent = currentUnit.name || 'Unnamed Unit';
+      document.getElementById('unit-faction').textContent = currentFaction ? currentFaction.name : 'Unknown Faction';
+
+      // Image
+      if (currentUnit.image_url) {
+        const img = document.getElementById('unit-image');
+        img.src = currentUnit.image_url;
+        img.style.display = 'block';
+      }
+
+      // Tags
+      const tagsContainer = document.getElementById('unit-tags');
+      if (currentUnit.tags && currentUnit.tags.length > 0) {
+        tagsContainer.innerHTML = currentUnit.tags.map(tag => `<span>${tag}</span>`).join('');
+      } else {
+        tagsContainer.innerHTML = '';
+      }
+
+      // Points & Size
+      document.getElementById('base-size').textContent = `${currentUnit.base_size || 1} models`;
+      document.getElementById('base-cost').textContent = `${currentUnit.base_cost || 0} pts`;
+      document.getElementById('cost-per-model').textContent = `${currentUnit.cost_per_model || 0} pts`;
+
+      // Update edit link
+      document.getElementById('edit-unit-link').href = `create-unit.html?id=${unitId}`;
+    }
+
+    function displayStats() {
+      const stats = currentUnit.stats || {};
+      document.getElementById('stat-m').textContent = stats.M || '-';
+      document.getElementById('stat-t').textContent = stats.T || '-';
+      document.getElementById('stat-sv').textContent = stats.Sv || '-';
+      document.getElementById('stat-w').textContent = stats.W || '-';
+      document.getElementById('stat-ld').textContent = stats.Ld || '-';
+      document.getElementById('stat-oc').textContent = stats.OC || '-';
+    }
+
+    function displayWeapons() {
+      const container = document.getElementById('weapons-container');
+      const weapons = currentUnit.weapons || [];
+
+      if (weapons.length === 0) {
+        container.innerHTML = '<p><em>No weapons listed for this unit.</em></p>';
+        return;
+      }
+
+      // Separate ranged and melee weapons
+      const rangedWeapons = weapons.filter(w => w.type === 'Ranged');
+      const meleeWeapons = weapons.filter(w => w.type === 'Melee');
+
+      let html = '';
+
+      if (rangedWeapons.length > 0) {
+        html += '<h4>Ranged Weapons</h4>';
+        html += '<div class="table-container"><table><thead><tr>';
+        html += '<th>Weapon</th><th>Range</th><th>A</th><th>BS</th><th>S</th><th>AP</th><th>D</th><th>Abilities</th>';
+        html += '</tr></thead><tbody>';
+        
+        rangedWeapons.forEach(weapon => {
+          html += `<tr>
+            <td><strong>${weapon.name}</strong></td>
+            <td>${weapon.range || '-'}</td>
+            <td>${weapon.attacks || '-'}</td>
+            <td>${weapon.skill || '-'}</td>
+            <td>${weapon.strength || '-'}</td>
+            <td>${weapon.ap || '-'}</td>
+            <td>${weapon.damage || '-'}</td>
+            <td>${weapon.abilities || '-'}</td>
+          </tr>`;
+        });
+        
+        html += '</tbody></table></div>';
+      }
+
+      if (meleeWeapons.length > 0) {
+        html += '<h4>Melee Weapons</h4>';
+        html += '<div class="table-container"><table><thead><tr>';
+        html += '<th>Weapon</th><th>Range</th><th>A</th><th>WS</th><th>S</th><th>AP</th><th>D</th><th>Abilities</th>';
+        html += '</tr></thead><tbody>';
+        
+        meleeWeapons.forEach(weapon => {
+          html += `<tr>
+            <td><strong>${weapon.name}</strong></td>
+            <td>${weapon.range || 'Melee'}</td>
+            <td>${weapon.attacks || '-'}</td>
+            <td>${weapon.skill || '-'}</td>
+            <td>${weapon.strength || '-'}</td>
+            <td>${weapon.ap || '-'}</td>
+            <td>${weapon.damage || '-'}</td>
+            <td>${weapon.abilities || '-'}</td>
+          </tr>`;
+        });
+        
+        html += '</tbody></table></div>';
+      }
+
+      container.innerHTML = html;
+    }
+
+    function displayAbilities() {
+      const container = document.getElementById('abilities-container');
+      const abilities = currentUnit.abilities || [];
+
+      if (abilities.length === 0) {
+        container.innerHTML = '<p><em>No special abilities for this unit.</em></p>';
+        return;
+      }
+
+      let html = '<ul style="list-style: disc; margin-left: 1.5rem;">';
+      abilities.forEach(ability => {
+        html += `<li><strong>${ability}</strong></li>`;
+      });
+      html += '</ul>';
+
+      container.innerHTML = html;
+    }
+
+    function displayTransportRules() {
+      let hasTransportRules = false;
+      const section = document.getElementById('transport-section');
+
+      // Transport capacity
+      if (currentUnit.transport_capacity && currentUnit.transport_capacity > 0) {
+        document.getElementById('transport-capacity').textContent = `This unit can transport ${currentUnit.transport_capacity} models.`;
+        document.getElementById('transport-box').style.display = 'block';
+        hasTransportRules = true;
+      }
+
+      // Can embark in
+      if (currentUnit.can_embark_in && currentUnit.can_embark_in.length > 0) {
+        document.getElementById('can-embark-in').textContent = currentUnit.can_embark_in.join(', ');
+        document.getElementById('embark-box').style.display = 'block';
+        hasTransportRules = true;
+      }
+
+      // Can attach to
+      if (currentUnit.can_attach_to && currentUnit.can_attach_to.length > 0) {
+        document.getElementById('can-attach-to').textContent = currentUnit.can_attach_to.join(', ');
+        document.getElementById('attach-box').style.display = 'block';
+        hasTransportRules = true;
+      }
+
+      if (hasTransportRules) {
+        section.style.display = 'block';
+      }
+    }
+
+    function showError(message) {
+      document.getElementById('loading-message').style.display = 'none';
+      document.getElementById('unit-content').style.display = 'none';
+      document.getElementById('error-text').textContent = message;
+      document.getElementById('error-message').style.display = 'block';
+    }
+  </script>
 </body>
 </html>

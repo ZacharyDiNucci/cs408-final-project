@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Faction Details - Wargame List Builder</title>
   <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js"></script>
 </head>
 <body>
   <header>
@@ -25,69 +26,184 @@
       <a href="factions.html">← Back to Factions</a>
     </div>
 
-    <div class="detail-header">
-      <h2>Imperial Guard</h2>
-      <p>The hammer of the Emperor</p>
-      <div class="tags">
-        <span>Infantry</span>
-        <span>Vehicles</span>
-        <span>Artillery</span>
-      </div>
-      <p class="description">
-        The Imperial Guard, also known as the Astra Militarum, are the primary fighting force of the Imperium of Man. 
-        Comprised of countless billions of soldiers from across the galaxy, they represent humanity's might through 
-        sheer numbers, devastating firepower, and unwavering courage. Where a Space Marine conquers, the Imperial Guard holds.
-      </p>
-      <div class="header-actions">
-        <a class="btn" href="list-builder.html">Build Army List</a>
-        <a class="btn" href="#">Edit Faction</a>
-      </div>
+    <div id="loading-message">
+      <p>Loading faction details...</p>
     </div>
 
-    <div class="content-section">
-      <h3>Army Rule</h3>
-      <div class="info-box">
-        <h4>Combined Arms</h4>
-        <p>Infantry units within 6" of a friendly Vehicle unit gain +1 to their hit rolls. Vehicle units within 6" 
-        of a friendly Infantry unit gain +1 to their Leadership tests. This represents the tactical synergy between 
-        the Guard's infantry and armored divisions working in concert.</p>
-      </div>
-    </div>
-
-    <div class="content-section">
-      <h3>Available Detachments</h3>
-      <p>Choose one when building your army list</p>
-      <div class="item-list">
-        <div class="list-item-box">
-          <h4>Infantry Company</h4>
-          <p class="item-label">Born Soldiers</p>
-          <p>Infantry units gain +1 to hit rolls when within 6" of an Officer. Represents elite infantry formations 
-          that excel in coordinated warfare.</p>
+    <div id="faction-content" style="display: none;">
+      <div class="detail-header">
+        <h2 id="faction-name">Loading...</h2>
+        <p id="faction-subtitle"></p>
+        <div class="tags" id="faction-tags">
         </div>
+        <p class="description" id="faction-description"></p>
+        <div class="header-actions">
+          <a class="btn" href="list-builder.html" id="build-list-link">Build Army List</a>
+          <a class="btn" href="create-faction.html" id="edit-faction-link">Edit Faction</a>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Army Rule</h3>
+        <div class="info-box" id="army-rule-box">
+          <h4 id="army-rule-name">Loading...</h4>
+          <p id="army-rule-description"></p>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Available Detachments</h3>
+        <p id="detachments-subtitle">Choose one when building your army list</p>
+        <div class="item-list" id="detachments-list">
+          <!-- Detachments will be inserted here -->
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Units in this Faction <span id="unit-count">(0 total)</span></h3>
+        <div class="table-container">
+          <div>
+            <label for="filter">Filter by Type</label>
+            <input type="text" id="filter" placeholder="Search units...">
+          </div>
+          <div id="units-table-container">
+            <!-- Units table will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="error-message" style="display: none;">
+      <div class="alert alert-warning">
+        <p><strong>Error:</strong> <span id="error-text"></span></p>
+        <a class="btn" href="factions.html">Back to Factions</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let currentFaction = null;
+    let factionDetachments = [];
+    let factionUnits = [];
+
+    // Get faction ID from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const factionId = urlParams.get('id');
+
+    // Load faction data when page loads
+    window.addEventListener('DOMContentLoaded', async () => {
+      if (!factionId) {
+        showError('No faction ID provided');
+        return;
+      }
+      
+      await loadFactionDetails();
+    });
+
+    async function loadFactionDetails() {
+      try {
+        // Load faction data
+        currentFaction = await getFactionById(factionId);
         
-        <div class="list-item-box">
-          <h4>Armored Regiment</h4>
-          <p class="item-label">Steel Phalanx</p>
-          <p>Vehicle units gain +1 Toughness when within 3" of another friendly Vehicle unit. Your armored spearhead 
-          becomes nearly unstoppable.</p>
-        </div>
-        
-        <div class="list-item-box">
-          <h4>Combined Arms Brigade</h4>
-          <p class="item-label">Tactical Coordination</p>
-          <p>Units gain +1 to hit when targeting an enemy unit that's within 12" of another friendly unit. Emphasizes 
-          surrounding and overwhelming the enemy.</p>
-        </div>
-      </div>
-    </div>
+        if (!currentFaction) {
+          showError('Faction not found');
+          return;
+        }
 
-    <div class="content-section">
-      <h3>Units in this Faction (12 total)</h3>
-      <div class="table-container">
-        <div>
-          <label for="filter">Filter by Type</label>
-          <input type="text" id="filter" placeholder="Search units...">
-        </div>
+        // Load detachments for this faction
+        factionDetachments = await getAllDetachments(factionId);
+        
+        // Load units for this faction
+        factionUnits = await getAllUnits(factionId);
+
+        // Display everything
+        displayFaction();
+        displayDetachments();
+        displayUnits();
+        setupUnitFilter();
+
+        // Show content, hide loading
+        document.getElementById('loading-message').style.display = 'none';
+        document.getElementById('faction-content').style.display = 'block';
+
+      } catch (error) {
+        console.error('Error loading faction details:', error);
+        showError('Failed to load faction details');
+      }
+    }
+
+    function displayFaction() {
+      document.getElementById('faction-name').textContent = currentFaction.name;
+      document.getElementById('faction-subtitle').textContent = currentFaction.description || '';
+      document.getElementById('faction-description').textContent = currentFaction.description || 'No description available.';
+
+      // Display tags
+      const tagsContainer = document.getElementById('faction-tags');
+      if (currentFaction.tags && currentFaction.tags.length > 0) {
+        tagsContainer.innerHTML = currentFaction.tags.map(tag => `<span>${tag}</span>`).join('');
+      } else {
+        tagsContainer.innerHTML = '';
+      }
+
+      // Display army rule
+      document.getElementById('army-rule-name').textContent = currentFaction.army_rule_name || 'No Army Rule';
+      document.getElementById('army-rule-description').textContent = currentFaction.army_rule_description || 'No description available.';
+
+      // Update links
+      document.getElementById('build-list-link').href = `list-builder.html?faction_id=${factionId}`;
+      document.getElementById('edit-faction-link').href = `create-faction.html?id=${factionId}`;
+    }
+
+    function displayDetachments() {
+      const container = document.getElementById('detachments-list');
+      
+      if (!factionDetachments || factionDetachments.length === 0) {
+        container.innerHTML = `
+          <div class="list-item-box">
+            <p>No detachments available for this faction yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      factionDetachments.forEach(detachment => {
+        html += `
+          <div class="list-item-box">
+            <h4>${detachment.name}</h4>
+            <p class="item-label">${detachment.rule_name || 'Special Rule'}</p>
+            <p>${detachment.rule_description || 'No description available.'}</p>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function displayUnits() {
+      const container = document.getElementById('units-table-container');
+      const unitCount = document.getElementById('unit-count');
+      
+      unitCount.textContent = `(${factionUnits.length} total)`;
+
+      if (!factionUnits || factionUnits.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <h3>No Units Found</h3>
+            <p>This faction doesn't have any units yet.</p>
+            <a class="btn" href="create-unit.html?faction_id=${factionId}">+ Create Unit</a>
+          </div>
+        `;
+        return;
+      }
+
+      renderUnitsTable(factionUnits);
+    }
+
+    function renderUnitsTable(units) {
+      const container = document.getElementById('units-table-container');
+
+      let tableHTML = `
         <table>
           <thead>
             <tr>
@@ -99,70 +215,61 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><strong>Company Commander</strong></td>
-              <td>
-                <span>Infantry</span>
-                <span>Character</span>
-              </td>
-              <td>50</td>
-              <td>1</td>
-              <td>
-                <a class="btn" href="unit-detail.html">View Details</a>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Cadian Shock Troops</strong></td>
-              <td>
-                <span>Infantry</span>
-                <span>Battleline</span>
-              </td>
-              <td>65</td>
-              <td>10</td>
-              <td>
-                <a class="btn" href="unit-detail.html">View Details</a>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Tempestus Scions</strong></td>
-              <td>
-                <span>Infantry</span>
-                <span>Elite</span>
-              </td>
-              <td>75</td>
-              <td>5</td>
-              <td>
-                <a class="btn" href="unit-detail.html">View Details</a>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Chimera Transport</strong></td>
-              <td>
-                <span>Vehicle</span>
-                <span>Transport</span>
-              </td>
-              <td>85</td>
-              <td>1</td>
-              <td>
-                <a class="btn" href="unit-detail.html">View Details</a>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Leman Russ Battle Tank</strong></td>
-              <td>
-                <span>Vehicle</span>
-                <span>Heavy Support</span>
-              </td>
-              <td>180</td>
-              <td>1</td>
-              <td>
-                <a class="btn" href="unit-detail.html">View Details</a>
-              </td>
-            </tr>
+      `;
+
+      units.forEach(unit => {
+        const tagsHTML = unit.tags && unit.tags.length > 0 
+          ? unit.tags.map(tag => `<span>${tag}</span>`).join('')
+          : '<span>None</span>';
+
+        tableHTML += `
+          <tr>
+            <td><strong>${unit.name || 'Unnamed Unit'}</strong></td>
+            <td>${tagsHTML}</td>
+            <td>${unit.base_cost || 0}</td>
+            <td>${unit.base_size || 1}</td>
+            <td>
+              <a class="btn" href="unit-detail.html?id=${unit.unit_id}">View Details</a>
+            </td>
+          </tr>
+        `;
+      });
+
+      tableHTML += `
           </tbody>
         </table>
-      </div>
-    </div>
-  </main>
+      `;
+
+      container.innerHTML = tableHTML;
+    }
+
+    function setupUnitFilter() {
+      const filterInput = document.getElementById('filter');
+      filterInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        if (!searchTerm) {
+          renderUnitsTable(factionUnits);
+          return;
+        }
+
+        const filtered = factionUnits.filter(unit => {
+          const name = (unit.name || '').toLowerCase();
+          const tags = (unit.tags || []).join(' ').toLowerCase();
+          
+          return name.includes(searchTerm) || tags.includes(searchTerm);
+        });
+
+        renderUnitsTable(filtered);
+      });
+    }
+
+    function showError(message) {
+      document.getElementById('loading-message').style.display = 'none';
+      document.getElementById('faction-content').style.display = 'none';
+      document.getElementById('error-text').textContent = message;
+      document.getElementById('error-message').style.display = 'block';
+    }
+  </script>
 </body>
 </html>

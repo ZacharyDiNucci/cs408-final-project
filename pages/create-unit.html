@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Unit - Wargame List Builder</title>
+  <title>Unit - Wargame List Builder</title>
   <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js"></script>
 </head>
 <body>
   <header>
@@ -25,243 +26,468 @@
       <a href="units.html">← Back to Units</a>
     </div>
 
-    <div class="detail-header">
-      <h2>Create New Unit</h2>
-      <p>Define a new unit with its stats, weapons, and abilities</p>
+    <div id="loading-message" style="display: none;">
+      <p>Loading unit data...</p>
     </div>
 
-    <form>
-      <!-- Basic Information -->
-      <div class="form-section">
-        <h3>Basic Information</h3>
-        <div class="form-grid-2">
+    <div id="form-container">
+      <div class="detail-header">
+        <h2 id="page-title">Create New Unit</h2>
+        <p id="page-subtitle">Define a unit with stats, weapons, and abilities</p>
+      </div>
+
+      <div id="message-container"></div>
+
+      <form id="unit-form">
+        <!-- Basic Information -->
+        <div class="form-section">
+          <h3>Basic Information</h3>
+          
+          <div class="form-group">
+            <label for="unit-faction">Faction *</label>
+            <select id="unit-faction" required>
+              <option value="">Select a faction...</option>
+              <!-- Factions will be loaded here -->
+            </select>
+          </div>
+
           <div class="form-group">
             <label for="unit-name">Unit Name *</label>
             <input type="text" id="unit-name" placeholder="e.g., Cadian Shock Troops" required>
           </div>
 
           <div class="form-group">
-            <label for="unit-faction">Faction *</label>
-            <select id="unit-faction" required>
-              <option value="">Select a faction...</option>
-              <option value="imperial-guard">Imperial Guard</option>
-              <option value="space-marines">Space Marines</option>
-              <option value="orks">Orks</option>
-            </select>
+            <label for="unit-tags">Unit Tags (comma-separated)</label>
+            <input type="text" id="unit-tags" placeholder="e.g., Infantry, Battleline, Core">
+            <small>Used for filtering and army building rules</small>
+          </div>
+
+          <div class="form-group">
+            <label for="unit-image">Image URL</label>
+            <input type="text" id="unit-image" placeholder="https://example.com/image.jpg">
+            <small>Optional: URL to unit image</small>
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="unit-tags">Unit Tags (comma-separated)</label>
-          <input type="text" id="unit-tags" placeholder="e.g., Infantry, Battleline, Core">
-          <small>Tags help with filtering and army building rules</small>
-        </div>
-
-        <div class="form-group">
-          <label for="unit-image">Unit Image</label>
-          <input type="file" id="unit-image" accept="image/*">
-          <small>Upload an image for this unit (optional - will appear in army lists)</small>
-        </div>
-      </div>
-
-      <!-- Unit Size & Cost -->
-      <div class="form-section">
-        <h3>Unit Size & Points</h3>
-        <div class="form-grid-3">
-          <div class="form-group">
-            <label for="unit-base-size">Base Unit Size</label>
-            <input type="number" id="unit-base-size" placeholder="e.g., 5, 10" min="1" value="1">
-            <small>Starting number of models</small>
-          </div>
-
-          <div class="form-group">
-            <label for="unit-base-cost">Base Points Cost</label>
-            <input type="number" id="unit-base-cost" placeholder="e.g., 100" min="0">
-            <small>Cost for base unit size</small>
-          </div>
-
-          <div class="form-group">
-            <label for="unit-cost-per-model">Cost Per Additional Model</label>
-            <input type="number" id="unit-cost-per-model" placeholder="e.g., 10" min="0">
-            <small>Optional: cost to add more models</small>
-          </div>
-        </div>
-      </div>
-
-      <!-- Unit Stats -->
-      <div class="form-section">
-        <h3>Unit Statistics</h3>
-        <div class="form-grid-4">
-          <div class="form-group">
-            <label for="stat-movement">Movement (M)</label>
-            <input type="text" id="stat-movement" placeholder='e.g., 6"'>
-          </div>
-
-          <div class="form-group">
-            <label for="stat-toughness">Toughness (T)</label>
-            <input type="number" id="stat-toughness" placeholder="e.g., 3" min="1">
-          </div>
-
-          <div class="form-group">
-            <label for="stat-save">Save (Sv)</label>
-            <input type="text" id="stat-save" placeholder="e.g., 4+">
-          </div>
-
-          <div class="form-group">
-            <label for="stat-wounds">Wounds (W)</label>
-            <input type="number" id="stat-wounds" placeholder="e.g., 1" min="1">
-          </div>
-
-          <div class="form-group">
-            <label for="stat-leadership">Leadership (Ld)</label>
-            <input type="text" id="stat-leadership" placeholder="e.g., 7+">
-          </div>
-
-          <div class="form-group">
-            <label for="stat-oc">Objective Control (OC)</label>
-            <input type="number" id="stat-oc" placeholder="e.g., 1" min="0">
-          </div>
-        </div>
-      </div>
-
-      <!-- Weapons -->
-      <div class="form-section">
-        <h3>Weapons</h3>
-        <p>Add weapons available to this unit</p>
-        
-        <!-- Weapon 1 -->
-        <div class="form-item">
-          <h4>Weapon 1</h4>
+        <!-- Unit Size & Points -->
+        <div class="form-section">
+          <h3>Unit Size & Points</h3>
           
-          <div class="form-grid-2">
+          <div class="form-grid-3">
             <div class="form-group">
-              <label for="weapon-1-name">Weapon Name</label>
-              <input type="text" id="weapon-1-name" placeholder="e.g., Lasgun, Bolter">
+              <label for="base-size">Base Size *</label>
+              <input type="number" id="base-size" min="1" value="1" required>
+              <small>Number of models</small>
             </div>
 
             <div class="form-group">
-              <label for="weapon-1-range">Range</label>
-              <input type="text" id="weapon-1-range" placeholder='e.g., 24"'>
-            </div>
-          </div>
-
-          <div class="form-grid-4">
-            <div class="form-group">
-              <label for="weapon-1-attacks">Attacks (A)</label>
-              <input type="text" id="weapon-1-attacks" placeholder="e.g., 2, D6">
+              <label for="base-cost">Base Cost *</label>
+              <input type="number" id="base-cost" min="0" value="0" required>
+              <small>Points for base size</small>
             </div>
 
             <div class="form-group">
-              <label for="weapon-1-strength">Strength (S)</label>
-              <input type="number" id="weapon-1-strength" placeholder="e.g., 3" min="1">
+              <label for="cost-per-model">Cost Per Model</label>
+              <input type="number" id="cost-per-model" min="0" value="0">
+              <small>For additional models</small>
             </div>
-
-            <div class="form-group">
-              <label for="weapon-1-ap">Armor Piercing (AP)</label>
-              <input type="text" id="weapon-1-ap" placeholder="e.g., 0, -1">
-            </div>
-
-            <div class="form-group">
-              <label for="weapon-1-damage">Damage (D)</label>
-              <input type="text" id="weapon-1-damage" placeholder="e.g., 1, D3">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="weapon-1-abilities">Weapon Abilities</label>
-            <input type="text" id="weapon-1-abilities" placeholder="e.g., Rapid Fire 1, Melta 2">
           </div>
         </div>
 
-        <!-- Weapon 2 -->
-        <div class="form-item">
-          <h4>Weapon 2 (Optional)</h4>
+        <!-- Stats -->
+        <div class="form-section">
+          <h3>Unit Statistics</h3>
           
-          <div class="form-grid-2">
+          <div class="form-grid-3">
             <div class="form-group">
-              <label for="weapon-2-name">Weapon Name</label>
-              <input type="text" id="weapon-2-name" placeholder="e.g., Plasma Gun">
+              <label for="stat-m">Movement (M)</label>
+              <input type="text" id="stat-m" placeholder='e.g., 6"'>
             </div>
 
             <div class="form-group">
-              <label for="weapon-2-range">Range</label>
-              <input type="text" id="weapon-2-range" placeholder='e.g., 24"'>
+              <label for="stat-t">Toughness (T)</label>
+              <input type="text" id="stat-t" placeholder="e.g., 3">
+            </div>
+
+            <div class="form-group">
+              <label for="stat-sv">Save (Sv)</label>
+              <input type="text" id="stat-sv" placeholder="e.g., 5+">
+            </div>
+
+            <div class="form-group">
+              <label for="stat-w">Wounds (W)</label>
+              <input type="text" id="stat-w" placeholder="e.g., 1">
+            </div>
+
+            <div class="form-group">
+              <label for="stat-ld">Leadership (Ld)</label>
+              <input type="text" id="stat-ld" placeholder="e.g., 7+">
+            </div>
+
+            <div class="form-group">
+              <label for="stat-oc">Objective Control (OC)</label>
+              <input type="text" id="stat-oc" placeholder="e.g., 1">
             </div>
           </div>
+        </div>
 
-          <div class="form-grid-4">
-            <div class="form-group">
-              <label for="weapon-2-attacks">Attacks (A)</label>
-              <input type="text" id="weapon-2-attacks" placeholder="e.g., 1">
-            </div>
+        <!-- Weapons -->
+        <div class="form-section">
+          <h3>Weapons</h3>
+          <p>Add weapons available to this unit</p>
+          
+          <div id="weapons-container">
+            <!-- Weapons will be added here -->
+          </div>
 
-            <div class="form-group">
-              <label for="weapon-2-strength">Strength (S)</label>
-              <input type="number" id="weapon-2-strength" placeholder="e.g., 7" min="1">
-            </div>
+          <button type="button" class="btn btn-add" id="add-weapon-btn">+ Add Weapon</button>
+        </div>
 
-            <div class="form-group">
-              <label for="weapon-2-ap">Armor Piercing (AP)</label>
-              <input type="text" id="weapon-2-ap" placeholder="e.g., -2">
-            </div>
+        <!-- Abilities -->
+        <div class="form-section">
+          <h3>Unit Abilities</h3>
+          
+          <div class="form-group">
+            <label for="unit-abilities">Abilities (one per line)</label>
+            <textarea id="unit-abilities" rows="5" placeholder="e.g., Combined Arms, Objective Secured, Born Soldiers"></textarea>
+            <small>Enter each ability on a new line</small>
+          </div>
+        </div>
 
-            <div class="form-group">
-              <label for="weapon-2-damage">Damage (D)</label>
-              <input type="text" id="weapon-2-damage" placeholder="e.g., 1">
-            </div>
+        <!-- Transport/Attachment Rules -->
+        <div class="form-section">
+          <h3>Transport & Attachment Rules</h3>
+          
+          <div class="form-group">
+            <label for="transport-capacity">Transport Capacity</label>
+            <input type="number" id="transport-capacity" min="0" value="0">
+            <small>Number of models this unit can transport (0 if not a transport)</small>
           </div>
 
           <div class="form-group">
-            <label for="weapon-2-abilities">Weapon Abilities</label>
-            <input type="text" id="weapon-2-abilities" placeholder="e.g., Rapid Fire 1, Gets Hot">
+            <label for="can-embark-in">Can Embark In (comma-separated unit names)</label>
+            <input type="text" id="can-embark-in" placeholder="e.g., Chimera, Valkyrie">
+            <small>Which transports can carry this unit</small>
+          </div>
+
+          <div class="form-group">
+            <label for="can-attach-to">Can Attach To (comma-separated unit names)</label>
+            <input type="text" id="can-attach-to" placeholder="e.g., Infantry Squad, Veterans">
+            <small>Which units this character can attach to</small>
           </div>
         </div>
 
-        <button type="button" class="btn btn-add">+ Add Another Weapon</button>
-      </div>
-
-      <!-- Abilities -->
-      <div class="form-section">
-        <h3>Unit Abilities</h3>
-        <div class="form-group">
-          <label for="unit-abilities">Abilities (one per line)</label>
-          <textarea id="unit-abilities" placeholder="e.g.,&#10;Born Soldiers: Re-roll hit rolls of 1&#10;Voice of Command: Issue orders to nearby infantry"></textarea>
-          <small>List special rules and abilities this unit has</small>
+        <!-- Form Actions -->
+        <div class="form-section">
+          <div class="form-actions">
+            <button type="submit" class="btn" id="submit-btn">Create Unit</button>
+            <a href="units.html" class="btn btn-secondary">Cancel</a>
+          </div>
         </div>
-      </div>
-
-      <!-- Transport/Attachment Rules -->
-      <div class="form-section">
-        <h3>Transport & Attachment Rules</h3>
-        <p>Optional: Define embark or attachment capabilities</p>
-        
-        <div class="form-group">
-          <label for="transport-capacity">Transport Capacity</label>
-          <input type="number" id="transport-capacity" placeholder="e.g., 10" min="0" value="0">
-          <small>Leave at 0 if not a transport</small>
-        </div>
-
-        <div class="form-group">
-          <label for="can-embark-in">Can Embark In (comma-separated unit names)</label>
-          <input type="text" id="can-embark-in" placeholder="e.g., Chimera, Leman Russ">
-        </div>
-
-        <div class="form-group">
-          <label for="can-attach-to">Can Attach To (comma-separated unit tags)</label>
-          <input type="text" id="can-attach-to" placeholder="e.g., Infantry, Battleline">
-          <small>For character units that can lead other units</small>
-        </div>
-      </div>
-
-      <!-- Form Actions -->
-      <div class="form-section">
-        <div class="form-actions">
-          <button type="submit" class="btn">Create Unit</button>
-          <button type="button" class="btn btn-secondary">Save as Draft</button>
-          <a href="units.html" class="btn btn-secondary">Cancel</a>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </main>
+
+  <script>
+    let weaponCount = 0;
+    let allFactions = [];
+    let isEditMode = false;
+    let currentUnit = null;
+
+    // Get unit ID from URL parameter (if editing)
+    const urlParams = new URLSearchParams(window.location.search);
+    const unitId = urlParams.get('id');
+    const preselectedFactionId = urlParams.get('faction_id');
+
+    // Setup page based on mode (create vs edit)
+    window.addEventListener('DOMContentLoaded', async () => {
+      await loadFactions();
+      
+      if (unitId) {
+        // Edit mode
+        isEditMode = true;
+        await loadEditMode();
+      } else {
+        // Create mode
+        isEditMode = false;
+        // Pre-select faction if coming from faction detail page
+        if (preselectedFactionId) {
+          document.getElementById('unit-faction').value = preselectedFactionId;
+        }
+      }
+      
+      document.getElementById('add-weapon-btn').addEventListener('click', addWeaponForm);
+      document.getElementById('unit-form').addEventListener('submit', handleFormSubmit);
+    });
+
+    async function loadFactions() {
+      try {
+        allFactions = await getAllFactions();
+        const select = document.getElementById('unit-faction');
+        
+        allFactions.forEach(faction => {
+          const option = document.createElement('option');
+          option.value = faction.faction_id;
+          option.textContent = faction.name;
+          select.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error loading factions:', error);
+        displayError('Failed to load factions', 'message-container');
+      }
+    }
+
+    async function loadEditMode() {
+      try {
+        document.getElementById('loading-message').style.display = 'block';
+        document.getElementById('form-container').style.display = 'none';
+
+        // Update page titles
+        document.getElementById('page-title').textContent = 'Edit Unit';
+        document.getElementById('page-subtitle').textContent = 'Update unit information, stats, and weapons';
+        document.getElementById('submit-btn').textContent = 'Update Unit';
+
+        // Load unit data
+        currentUnit = await getUnitById(unitId);
+        
+        if (!currentUnit) {
+          alert('Unit not found');
+          window.location.href = 'units.html';
+          return;
+        }
+
+        // Populate form with existing data
+        document.getElementById('unit-faction').value = currentUnit.faction_id || '';
+        document.getElementById('unit-name').value = currentUnit.name || '';
+        document.getElementById('unit-tags').value = formatTags(currentUnit.tags || []);
+        document.getElementById('unit-image').value = currentUnit.image_url || '';
+        document.getElementById('base-size').value = currentUnit.base_size || 1;
+        document.getElementById('base-cost').value = currentUnit.base_cost || 0;
+        document.getElementById('cost-per-model').value = currentUnit.cost_per_model || 0;
+
+        // Stats
+        const stats = currentUnit.stats || {};
+        document.getElementById('stat-m').value = stats.M || '';
+        document.getElementById('stat-t').value = stats.T || '';
+        document.getElementById('stat-sv').value = stats.Sv || '';
+        document.getElementById('stat-w').value = stats.W || '';
+        document.getElementById('stat-ld').value = stats.Ld || '';
+        document.getElementById('stat-oc').value = stats.OC || '';
+
+        // Abilities (join with newlines)
+        const abilities = currentUnit.abilities || [];
+        document.getElementById('unit-abilities').value = abilities.join('\n');
+
+        // Transport rules
+        document.getElementById('transport-capacity').value = currentUnit.transport_capacity || 0;
+        document.getElementById('can-embark-in').value = formatTags(currentUnit.can_embark_in || []);
+        document.getElementById('can-attach-to').value = formatTags(currentUnit.can_attach_to || []);
+
+        // Load existing weapons
+        const weapons = currentUnit.weapons || [];
+        weapons.forEach(weapon => {
+          addWeaponForm(weapon);
+        });
+
+        // Show form
+        document.getElementById('loading-message').style.display = 'none';
+        document.getElementById('form-container').style.display = 'block';
+
+      } catch (error) {
+        console.error('Error loading unit:', error);
+        alert('Failed to load unit data');
+        window.location.href = 'units.html';
+      }
+    }
+
+    function addWeaponForm(weaponData = null) {
+      weaponCount++;
+      const container = document.getElementById('weapons-container');
+      
+      const weapon = weaponData || {
+        name: '',
+        type: 'Ranged',
+        range: '',
+        attacks: '',
+        skill: '',
+        strength: '',
+        ap: '',
+        damage: '',
+        abilities: ''
+      };
+
+      const weaponHTML = `
+        <div class="form-item weapon-item" data-weapon-index="${weaponCount}">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h4>Weapon ${weaponCount}</h4>
+            <button type="button" class="btn btn-secondary" onclick="removeWeapon(this)">Remove</button>
+          </div>
+          
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Weapon Name</label>
+              <input type="text" class="weapon-name" placeholder="e.g., Lasgun" value="${weapon.name}">
+            </div>
+
+            <div class="form-group">
+              <label>Type</label>
+              <select class="weapon-type">
+                <option value="Ranged" ${weapon.type === 'Ranged' ? 'selected' : ''}>Ranged</option>
+                <option value="Melee" ${weapon.type === 'Melee' ? 'selected' : ''}>Melee</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-4">
+            <div class="form-group">
+              <label>Range</label>
+              <input type="text" class="weapon-range" placeholder='e.g., 24"' value="${weapon.range}">
+            </div>
+
+            <div class="form-group">
+              <label>Attacks (A)</label>
+              <input type="text" class="weapon-attacks" placeholder="e.g., 2" value="${weapon.attacks}">
+            </div>
+
+            <div class="form-group">
+              <label>Skill (BS/WS)</label>
+              <input type="text" class="weapon-skill" placeholder="e.g., 4+" value="${weapon.skill}">
+            </div>
+
+            <div class="form-group">
+              <label>Strength (S)</label>
+              <input type="text" class="weapon-strength" placeholder="e.g., 3" value="${weapon.strength}">
+            </div>
+
+            <div class="form-group">
+              <label>AP</label>
+              <input type="text" class="weapon-ap" placeholder="e.g., 0" value="${weapon.ap}">
+            </div>
+
+            <div class="form-group">
+              <label>Damage (D)</label>
+              <input type="text" class="weapon-damage" placeholder="e.g., 1" value="${weapon.damage}">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Abilities</label>
+            <input type="text" class="weapon-abilities" placeholder="e.g., Rapid Fire 1, Assault" value="${weapon.abilities}">
+          </div>
+        </div>
+      `;
+      
+      container.insertAdjacentHTML('beforeend', weaponHTML);
+    }
+
+    function removeWeapon(button) {
+      button.closest('.weapon-item').remove();
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      const messageContainer = document.getElementById('message-container');
+      messageContainer.innerHTML = `<div class="alert alert-info"><p>${isEditMode ? 'Updating' : 'Creating'} unit...</p></div>`;
+
+      try {
+        // Gather stats
+        const stats = {
+          M: document.getElementById('stat-m').value || '',
+          T: document.getElementById('stat-t').value || '',
+          Sv: document.getElementById('stat-sv').value || '',
+          W: document.getElementById('stat-w').value || '',
+          Ld: document.getElementById('stat-ld').value || '',
+          OC: document.getElementById('stat-oc').value || ''
+        };
+
+        // Gather weapons
+        const weaponElements = document.querySelectorAll('.weapon-item');
+        const weapons = [];
+        
+        weaponElements.forEach(item => {
+          const name = item.querySelector('.weapon-name').value;
+          if (name.trim()) {
+            weapons.push({
+              name: name,
+              type: item.querySelector('.weapon-type').value,
+              range: item.querySelector('.weapon-range').value || '',
+              attacks: item.querySelector('.weapon-attacks').value || '',
+              skill: item.querySelector('.weapon-skill').value || '',
+              strength: item.querySelector('.weapon-strength').value || '',
+              ap: item.querySelector('.weapon-ap').value || '',
+              damage: item.querySelector('.weapon-damage').value || '',
+              abilities: item.querySelector('.weapon-abilities').value || ''
+            });
+          }
+        });
+
+        // Gather abilities (split by newline)
+        const abilitiesText = document.getElementById('unit-abilities').value;
+        const abilities = abilitiesText.split('\n')
+          .map(a => a.trim())
+          .filter(a => a.length > 0);
+
+        // Gather unit data
+        const unitData = {
+          faction_id: document.getElementById('unit-faction').value,
+          name: document.getElementById('unit-name').value,
+          tags: parseTags(document.getElementById('unit-tags').value),
+          image_url: document.getElementById('unit-image').value || '',
+          base_size: parseInt(document.getElementById('base-size').value),
+          base_cost: parseInt(document.getElementById('base-cost').value),
+          cost_per_model: parseInt(document.getElementById('cost-per-model').value),
+          stats: stats,
+          weapons: weapons,
+          abilities: abilities,
+          transport_capacity: parseInt(document.getElementById('transport-capacity').value),
+          can_embark_in: parseTags(document.getElementById('can-embark-in').value),
+          can_attach_to: parseTags(document.getElementById('can-attach-to').value)
+        };
+
+        console.log(`${isEditMode ? 'Updating' : 'Creating'} unit with data:`, unitData);
+
+        let resultUnitId;
+
+        if (isEditMode) {
+          // Update existing unit
+          unitData.unit_id = unitId;
+          unitData.created_at = currentUnit.created_at; // Preserve creation time
+          await updateUnit(unitId, unitData);
+          resultUnitId = unitId;
+          console.log('Unit updated');
+        } else {
+          // Create new unit
+          const result = await createUnit(unitData);
+          console.log('Unit created:', result);
+          resultUnitId = result.unit_id;
+        }
+
+        // Success!
+        messageContainer.innerHTML = `
+          <div class="alert alert-success">
+            <p><strong>Success!</strong> Unit "${unitData.name}" ${isEditMode ? 'updated' : 'created'} successfully!</p>
+          </div>
+        `;
+
+        // Redirect after 2 seconds
+        setTimeout(() => {
+          if (isEditMode) {
+            window.location.href = `unit-detail.html?id=${resultUnitId}`;
+          } else {
+            window.location.href = 'units.html';
+          }
+        }, 2000);
+
+      } catch (error) {
+        console.error('Full error:', error);
+        messageContainer.innerHTML = `
+          <div class="alert alert-warning">
+            <p><strong>Error:</strong> ${error.message}</p>
+          </div>
+        `;
+      }
+    }
+  </script>
 </body>
 </html>
