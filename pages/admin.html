@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Wargame List Builder</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Wargame List Builder</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="factions.html">Factions</a></li>
+        <li><a href="units.html">Units</a></li>
+        <li><a href="lists.html">Army Lists</a></li>
+        <li><a href="admin.html" class="active">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="center">
+      <h2>Admin Dashboard</h2>
+      <p>Overview of all data in the system</p>
+    </div>
+
+    <!-- Statistics Summary -->
+    <div class="content-section">
+      <h3>System Statistics</h3>
+      <div class="summary-stats">
+        <div class="stat-item">
+          <span class="stat-label">Total Factions</span>
+          <span class="stat-value" id="total-factions">-</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Total Detachments</span>
+          <span class="stat-value" id="total-detachments">-</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Total Units</span>
+          <span class="stat-value" id="total-units">-</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Total Army Lists</span>
+          <span class="stat-value" id="total-lists">-</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Total List Units</span>
+          <span class="stat-value" id="total-list-units">-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Factions Table -->
+    <div class="content-section">
+      <h3>All Factions</h3>
+      <div id="factions-container">
+        <p>Loading factions...</p>
+      </div>
+    </div>
+
+    <!-- Detachments Table -->
+    <div class="content-section">
+      <h3>All Detachments</h3>
+      <div id="detachments-container">
+        <p>Loading detachments...</p>
+      </div>
+    </div>
+
+    <!-- Units Table -->
+    <div class="content-section">
+      <h3>All Units</h3>
+      <div id="units-container">
+        <p>Loading units...</p>
+      </div>
+    </div>
+
+    <!-- Army Lists Table -->
+    <div class="content-section">
+      <h3>All Army Lists</h3>
+      <div id="lists-container">
+        <p>Loading lists...</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let allFactions = [];
+    let allDetachments = [];
+    let allUnits = [];
+    let allLists = [];
+    let factionMap = {};
+
+    // Load all data on page load
+    window.addEventListener('DOMContentLoaded', async () => {
+      await loadAllData();
+    });
+
+    async function loadAllData() {
+      try {
+        // Load factions
+        allFactions = await getAllFactions();
+        allFactions.forEach(f => factionMap[f.faction_id] = f.name);
+
+        // Load all detachments
+        const detachmentPromises = allFactions.map(async (faction) => {
+          const detachments = await getAllDetachments(faction.faction_id);
+          return detachments || [];
+        });
+        const detachmentArrays = await Promise.all(detachmentPromises);
+        allDetachments = detachmentArrays.flat();
+
+        // Load units
+        allUnits = await getAllUnits();
+
+        // Load lists
+        allLists = await getAllLists();
+
+        // Count list units across all lists
+        let totalListUnits = 0;
+        const listUnitPromises = allLists.map(async (list) => {
+          const listUnits = await getListUnits(list.list_id);
+          return listUnits ? listUnits.length : 0;
+        });
+        const listUnitCounts = await Promise.all(listUnitPromises);
+        totalListUnits = listUnitCounts.reduce((sum, count) => sum + count, 0);
+
+        // Update statistics
+        document.getElementById('total-factions').textContent = allFactions.length;
+        document.getElementById('total-detachments').textContent = allDetachments.length;
+        document.getElementById('total-units').textContent = allUnits.length;
+        document.getElementById('total-lists').textContent = allLists.length;
+        document.getElementById('total-list-units').textContent = totalListUnits;
+
+        // Display all data
+        displayFactions();
+        displayDetachments();
+        displayUnits();
+        displayLists();
+
+      } catch (error) {
+        console.error('Error loading admin data:', error);
+      }
+    }
+
+    function displayFactions() {
+      const container = document.getElementById('factions-container');
+      
+      if (!allFactions || allFactions.length === 0) {
+        container.innerHTML = '<p><em>No factions in system.</em></p>';
+        return;
+      }
+
+      let html = '<div class="table-container"><table><thead><tr>';
+      html += '<th>Faction Name</th><th>Army Rule</th><th>Tags</th><th>Actions</th>';
+      html += '</tr></thead><tbody>';
+
+      allFactions.forEach(faction => {
+        const tagsHTML = faction.tags && faction.tags.length > 0 
+          ? faction.tags.slice(0, 3).map(tag => `<span>${tag}</span>`).join('')
+          : '<span>None</span>';
+        
+        const armyRule = faction.army_rule_name || 'None';
+
+        html += `<tr>
+          <td><strong>${faction.name}</strong></td>
+          <td>${armyRule}</td>
+          <td>${tagsHTML}</td>
+          <td>
+            <a class="btn" href="faction-detail.html?id=${faction.faction_id}">View</a>
+          </td>
+        </tr>`;
+      });
+
+      html += '</tbody></table></div>';
+      container.innerHTML = html;
+    }
+
+    function displayDetachments() {
+      const container = document.getElementById('detachments-container');
+      
+      if (!allDetachments || allDetachments.length === 0) {
+        container.innerHTML = '<p><em>No detachments in system.</em></p>';
+        return;
+      }
+
+      let html = '<div class="table-container"><table><thead><tr>';
+      html += '<th>Detachment Name</th><th>Faction</th><th>Rule Name</th>';
+      html += '</tr></thead><tbody>';
+
+      allDetachments.forEach(detachment => {
+        const factionName = factionMap[detachment.faction_id] || 'Unknown';
+        const ruleName = detachment.rule_name || 'None';
+
+        html += `<tr>
+          <td><strong>${detachment.name}</strong></td>
+          <td>${factionName}</td>
+          <td>${ruleName}</td>
+        </tr>`;
+      });
+
+      html += '</tbody></table></div>';
+      container.innerHTML = html;
+    }
+
+    function displayUnits() {
+      const container = document.getElementById('units-container');
+      
+      if (!allUnits || allUnits.length === 0) {
+        container.innerHTML = '<p><em>No units in system.</em></p>';
+        return;
+      }
+
+      let html = '<div class="table-container"><table><thead><tr>';
+      html += '<th>Unit Name</th><th>Faction</th><th>Points</th><th>Tags</th><th>Actions</th>';
+      html += '</tr></thead><tbody>';
+
+      allUnits.forEach(unit => {
+        const factionName = factionMap[unit.faction_id] || 'Unknown';
+        const tagsHTML = unit.tags && unit.tags.length > 0 
+          ? unit.tags.slice(0, 3).map(tag => `<span>${tag}</span>`).join('')
+          : '<span>None</span>';
+
+        html += `<tr>
+          <td><strong>${unit.name}</strong></td>
+          <td>${factionName}</td>
+          <td>${unit.base_cost} pts</td>
+          <td>${tagsHTML}</td>
+          <td>
+            <a class="btn" href="unit-detail.html?id=${unit.unit_id}">View</a>
+          </td>
+        </tr>`;
+      });
+
+      html += '</tbody></table></div>';
+      container.innerHTML = html;
+    }
+
+    function displayLists() {
+      const container = document.getElementById('lists-container');
+      
+      if (!allLists || allLists.length === 0) {
+        container.innerHTML = '<p><em>No army lists in system.</em></p>';
+        return;
+      }
+
+      let html = '<div class="table-container"><table><thead><tr>';
+      html += '<th>List Name</th><th>Faction</th><th>Points</th><th>Valid</th><th>Actions</th>';
+      html += '</tr></thead><tbody>';
+
+      allLists.forEach(list => {
+        const factionName = factionMap[list.faction_id] || 'Unknown';
+        const validBadge = list.is_valid 
+          ? '<span style="color: green;">✓</span>' 
+          : '<span style="color: red;">✗</span>';
+
+        html += `<tr>
+          <td><strong>${list.name}</strong></td>
+          <td>${factionName}</td>
+          <td>${list.current_points}/${list.point_limit}</td>
+          <td>${validBadge}</td>
+          <td>
+            <a class="btn" href="list-detail.html?id=${list.list_id}">View</a>
+          </td>
+        </tr>`;
+      });
+
+      html += '</tbody></table></div>';
+      container.innerHTML = html;
+    }
+  </script>
+</body>
+</html>

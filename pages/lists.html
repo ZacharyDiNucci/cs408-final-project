@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Army Lists - Wargame List Builder</title>
   <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js"></script>
 </head>
 <body>
   <header>
@@ -14,111 +15,215 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="factions.html">Factions</a></li>
         <li><a href="units.html">Units</a></li>
-        <li><a href="lists.html">Army Lists</a></li>
+        <li><a href="lists.html" class="active">Army Lists</a></li>
         <li><a href="admin.html">Admin</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-  <div class="center">
-    <div>
-      <h2>Army Lists</h2>
-      <p>Manage your saved army lists</p>
+    <div class="center">
+      <div>
+        <h2>Army Lists</h2>
+        <p>Manage your saved army lists</p>
+      </div>
+      <div>
+        <a class="btn" href="list-builder.html">+ Build New List</a>
+      </div>
     </div>
-    <div>
-      <a class="btn" href="list-builder.html">+ Build New List</a>
-    </div>
-  </div>
 
-  <div class="table-container">
-    <div>
-      <label for="search">Search Lists</label>
-      <input type="text" id="search" placeholder="Search by name...">
+    <div class="table-container">
+      <div class="form-grid-2">
+        <div>
+          <label for="search">Search Lists</label>
+          <input type="text" id="search" placeholder="Search by name...">
+        </div>
+        
+        <div>
+          <label for="faction-filter">Filter by Faction</label>
+          <select id="faction-filter">
+            <option value="">All Factions</option>
+            <!-- Factions will be loaded here -->
+          </select>
+        </div>
+      </div>
+      
+      <div id="lists-table-container">
+        <!-- Table will be inserted here by JavaScript -->
+        <p>Loading lists...</p>
+      </div>
     </div>
-    
-    <table>
-      <thead>
-        <tr>
-          <th>List Name</th>
-          <th>Faction</th>
-          <th>Detachment</th>
-          <th>Point Limit</th>
-          <th>Current Points</th>
-          <th>Total Units</th>
-          <th>Warlord</th>
-          <th>Valid</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <strong>Steel Legion Infantry Company</strong>
-          </td>
-          <td>Imperial Guard</td>
-          <td>Infantry Company</td>
-          <td>1000</td>
-          <td>995</td>
-          <td>8</td>
-          <td>Company Commander</td>
-          <td><span>Valid ✓</span></td>
-          <td>
-            <a class="btn" href="list-detail.html">View List</a>
-            <a class="btn" href="list-builder.html">Edit</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Armored Spearhead</strong>
-          </td>
-          <td>Imperial Guard</td>
-          <td>Armored Regiment</td>
-          <td>2000</td>
-          <td>1985</td>
-          <td>12</td>
-          <td>Tank Commander</td>
-          <td><span>Valid ✓</span></td>
-          <td>
-            <a class="btn" href="list-detail.html">View List</a>
-            <a class="btn" href="list-builder.html">Edit</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Ultramarines Strike Force</strong>
-          </td>
-          <td>Space Marines</td>
-          <td>Gladius Task Force</td>
-          <td>2000</td>
-          <td>2045</td>
-          <td>15</td>
-          <td>Captain</td>
-          <td><span>Invalid ⚠️</span></td>
-          <td>
-            <a class="btn" href="list-detail.html">View List</a>
-            <a class="btn" href="list-builder.html">Edit</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Goff Warband</strong>
-          </td>
-          <td>Orks</td>
-          <td>Waaagh!</td>
-          <td>1000</td>
-          <td>990</td>
-          <td>10</td>
-          <td>Warboss</td>
-          <td><span>Valid ✓</span></td>
-          <td>
-            <a class="btn" href="list-detail.html">View List</a>
-            <a class="btn" href="list-builder.html">Edit</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</main>
+  </main>
+
+  <script>
+    // Page-specific JavaScript for lists.html
+    let allLists = [];
+    let allFactions = [];
+    let factionMap = {}; // Map faction_id to faction name
+
+    // Load lists when page loads
+    window.addEventListener('DOMContentLoaded', async () => {
+      await loadFactions();
+      await loadLists();
+      setupFilters();
+    });
+
+    async function loadFactions() {
+      try {
+        allFactions = await getAllFactions();
+        
+        // Create faction map for quick lookup
+        allFactions.forEach(faction => {
+          factionMap[faction.faction_id] = faction.name;
+        });
+
+        // Populate faction filter dropdown
+        const select = document.getElementById('faction-filter');
+        allFactions.forEach(faction => {
+          const option = document.createElement('option');
+          option.value = faction.faction_id;
+          option.textContent = faction.name;
+          select.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error loading factions:', error);
+      }
+    }
+
+    async function loadLists() {
+      try {
+        allLists = await getAllLists();
+        
+        // Load unit counts for each list
+        const listPromises = allLists.map(async (list) => {
+          try {
+            const listUnits = await getListUnits(list.list_id);
+            list.unit_count = listUnits ? listUnits.length : 0;
+          } catch (error) {
+            console.error(`Error loading units for list ${list.list_id}:`, error);
+            list.unit_count = 0;
+          }
+        });
+        
+        await Promise.all(listPromises);
+        displayLists(allLists);
+      } catch (error) {
+        displayError('Failed to load lists. Please try again later.', 'lists-table-container');
+      }
+    }
+
+    function displayLists(lists) {
+      const container = document.getElementById('lists-table-container');
+      
+      if (!lists || lists.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <h3>No Army Lists Found</h3>
+            <p>Build your first army list to get started!</p>
+            <a class="btn" href="list-builder.html">+ Build New List</a>
+          </div>
+        `;
+        return;
+      }
+
+      let tableHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>List Name</th>
+              <th>Faction</th>
+              <th>Point Limit</th>
+              <th>Current Points</th>
+              <th>Total Units</th>
+              <th>Valid</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      lists.forEach(list => {
+        const factionName = factionMap[list.faction_id] || 'Unknown Faction';
+        const validBadge = list.is_valid 
+          ? '<span style="color: green;">✓ Valid</span>' 
+          : '<span style="color: red;">✗ Invalid</span>';
+
+        tableHTML += `
+          <tr>
+            <td><strong>${list.name || 'Unnamed List'}</strong></td>
+            <td>${factionName}</td>
+            <td>${list.point_limit || 1000}</td>
+            <td>${list.current_points || 0}</td>
+            <td>${list.unit_count || 0}</td>
+            <td>${validBadge}</td>
+            <td>
+              <a class="btn" href="list-detail.html?id=${list.list_id}">View Details</a>
+              <a class="btn btn-secondary" href="list-builder.html?id=${list.list_id}">Edit</a>
+              <button class="btn btn-secondary" onclick="deleteListConfirm('${list.list_id}', '${list.name}')">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      tableHTML += `
+          </tbody>
+        </table>
+      `;
+
+      container.innerHTML = tableHTML;
+    }
+
+    function setupFilters() {
+      const searchInput = document.getElementById('search');
+      const factionFilter = document.getElementById('faction-filter');
+
+      searchInput.addEventListener('input', applyFilters);
+      factionFilter.addEventListener('change', applyFilters);
+    }
+
+    function applyFilters() {
+      const searchTerm = document.getElementById('search').value.toLowerCase();
+      const selectedFaction = document.getElementById('faction-filter').value;
+
+      let filtered = allLists;
+
+      // Apply faction filter
+      if (selectedFaction) {
+        filtered = filtered.filter(list => list.faction_id === selectedFaction);
+      }
+
+      // Apply search filter
+      if (searchTerm) {
+        filtered = filtered.filter(list => {
+          const name = (list.name || '').toLowerCase();
+          const factionName = (factionMap[list.faction_id] || '').toLowerCase();
+          
+          return name.includes(searchTerm) || factionName.includes(searchTerm);
+        });
+      }
+
+      displayLists(filtered);
+    }
+
+    async function deleteListConfirm(listId, listName) {
+      if (confirm(`Are you sure you want to delete "${listName}"? This cannot be undone.`)) {
+        try {
+          // Delete all list units first
+          const listUnits = await getListUnits(listId);
+          if (listUnits && listUnits.length > 0) {
+            const deletePromises = listUnits.map(lu => removeUnitFromList(lu.list_unit_id));
+            await Promise.all(deletePromises);
+          }
+          
+          // Then delete the list
+          await deleteList(listId);
+          displaySuccess('List deleted successfully!');
+          await loadLists(); // Reload the list
+        } catch (error) {
+          displayError('Failed to delete list.');
+        }
+      }
+    }
+  </script>
 </body>
 </html>

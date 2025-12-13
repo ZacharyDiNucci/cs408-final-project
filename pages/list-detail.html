@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Army List - Wargame List Builder</title>
+  <title>Army List Details - Wargame List Builder</title>
   <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js"></script>
 </head>
 <body>
   <header>
@@ -14,7 +15,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="factions.html">Factions</a></li>
         <li><a href="units.html">Units</a></li>
-        <li><a href="lists.html">Army Lists</a></li>
+        <li><a href="lists.html" class="active">Army Lists</a></li>
         <li><a href="admin.html">Admin</a></li>
       </ul>
     </nav>
@@ -25,238 +26,320 @@
       <a href="lists.html">← Back to Army Lists</a>
     </div>
 
-    <div class="detail-header">
-      <h2>Steel Legion Infantry Company</h2>
-      <p>Imperial Guard - Infantry Company Detachment</p>
-      <div class="header-actions">
-        <a class="btn" href="#">Export to File</a>
-        <a class="btn" href="list-builder.html">Edit List</a>
-        <a class="btn" href="#">Delete</a>
+    <div id="loading-message">
+      <p>Loading army list...</p>
+    </div>
+
+    <div id="list-content" style="display: none;">
+      <div class="detail-header">
+        <h2 id="list-name">Loading...</h2>
+        <p id="list-subtitle"></p>
+        <div class="header-actions">
+          <a class="btn" href="list-builder.html" id="edit-list-link">Edit List</a>
+          <button class="btn btn-secondary" onclick="printList()">Print List</button>
+        </div>
+      </div>
+
+      <!-- Army Summary -->
+      <div class="content-section">
+        <h3>Army Summary</h3>
+        <div class="info-box">
+          <div class="summary-stats">
+            <div class="stat-item">
+              <span class="stat-label">Faction</span>
+              <span class="stat-value" id="faction-name">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Detachment</span>
+              <span class="stat-value" id="detachment-name">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Point Limit</span>
+              <span class="stat-value" id="point-limit">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Current Points</span>
+              <span class="stat-value" id="current-points">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Total Units</span>
+              <span class="stat-value" id="total-units">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">List Status</span>
+              <span class="stat-value" id="list-valid">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Army Rules -->
+      <div class="content-section" id="army-rules-section">
+        <h3>Army Rules</h3>
+        <div class="info-box">
+          <h4 id="army-rule-name">-</h4>
+          <p id="army-rule-description">-</p>
+        </div>
+        <div class="info-box" id="detachment-rule-box" style="display: none;">
+          <h4 id="detachment-rule-name">-</h4>
+          <p id="detachment-rule-description">-</p>
+        </div>
+      </div>
+
+      <!-- Units in List -->
+      <div class="content-section">
+        <h3>Units in Army List</h3>
+        <div id="units-container">
+          <!-- Units will be organized by type here -->
+        </div>
       </div>
     </div>
 
-    <div class="content-section">
-      <h3>Army Summary</h3>
-      <div class="list-item-box">
-        <p><strong>Point Limit:</strong> 1000</p>
-        <p><strong>Current Points:</strong> 995</p>
-        <p><strong>Total Units:</strong> 8</p>
-        <p><strong>Warlord:</strong> Company Commander "Iron Hand" Brennan</p>
-        <p><strong>Status:</strong> <span>Valid ✓</span></p>
-      </div>
-    </div>
-
-    <div class="content-section">
-      <h3>Army Rules & Detachment</h3>
-      <div class="info-box">
-        <h4>Army Rule: Combined Arms</h4>
-        <p>Infantry units within 6" of a friendly Vehicle unit gain +1 to their hit rolls. Vehicle units within 6" 
-        of a friendly Infantry unit gain +1 to their Leadership tests.</p>
-      </div>
-      <div class="info-box">
-        <h4>Detachment: Infantry Company</h4>
-        <p><strong>Born Soldiers:</strong> Infantry units gain +1 to hit rolls when within 6" of an Officer. 
-        Represents elite infantry formations that excel in coordinated warfare.</p>
-      </div>
-    </div>
-
-    <div class="content-section">
-      <h3>Characters (2 units - 90 points)</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Unit Name</th>
-            <th>Tags</th>
-            <th>Points</th>
-            <th>Models</th>
-            <th>Wargear</th>
-            <th>Notes</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><img src="https://placehold.co/60x60/14b8a6/ffffff?text=Commander" alt="Commander" class="unit-image"></td>
-            <td><strong>Company Commander "Iron Hand" Brennan</strong></td>
-            <td>
-              <span>Infantry</span>
-              <span>Character</span>
-              <span>Warlord</span>
-            </td>
-            <td>50</td>
-            <td>1</td>
-            <td>Bolt Pistol, Power Sword</td>
-            <td>Warlord</td>
-            <td><a class="btn" href="unit-detail.html">Details</a></td>
-          </tr>
-          <tr>
-            <td><img src="https://placehold.co/60x60/3b82f6/ffffff?text=Psyker" alt="Psyker" class="unit-image"></td>
-            <td><strong>Primaris Psyker</strong></td>
-            <td>
-              <span>Infantry</span>
-              <span>Character</span>
-              <span>Psyker</span>
-            </td>
-            <td>40</td>
-            <td>1</td>
-            <td>Force Stave, Laspistol</td>
-            <td>Attached to: Squad Alpha</td>
-            <td><a class="btn" href="unit-detail.html">Details</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="content-section">
-      <h3>Battleline (4 units - 330 points)</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Unit Name</th>
-            <th>Tags</th>
-            <th>Points</th>
-            <th>Models</th>
-            <th>Wargear</th>
-            <th>Notes</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><img src="https://placehold.co/60x60/14b8a6/ffffff?text=Squad+A" alt="Squad Alpha" class="unit-image"></td>
-            <td><strong>Cadian Shock Troops - Squad Alpha</strong></td>
-            <td>
-              <span>Infantry</span>
-              <span>Battleline</span>
-            </td>
-            <td>77</td>
-            <td>10</td>
-            <td>Plasma Gun, Meltagun</td>
-            <td>Leader: Primaris Psyker</td>
-            <td><a class="btn" href="unit-detail.html">Details</a></td>
-          </tr>
-          <tr>
-            <td><img src="https://placehold.co/60x60/14b8a6/ffffff?text=Squad+B" alt="Squad Bravo" class="unit-image"></td>
-            <td><strong>Cadian Shock Troops - Squad Bravo</strong></td>
-            <td>
-              <span>Infantry</span>
-              <span>Battleline</span>
-            </td>
-            <td>71</td>
-            <td>10</td>
-            <td>Grenade Launcher, Flamer</td>
-            <td>-</td>
-            <td><a class="btn" href="unit-detail.html">Details</a></td>
-          </tr>
-          <tr>
-            <td><img src="https://placehold.co/60x60/14b8a6/ffffff?text=Squad+C" alt="Squad Charlie" class="unit-image"></td>
-            <td><strong>Cadian Shock Troops - Squad Charlie</strong></td>
-            <td>
-              <span>Infantry</span>
-              <span>Battleline</span>
-            </td>
-            <td>125</td>
-            <td>20</td>
-            <td>2x Plasma Gun</td>
-            <td>In Transport: Chimera</td>
-            <td><a class="btn" href="unit-detail.html">Details</a></td>
-          </tr>
-          <tr>
-            <td><img src="https://placehold.co/60x60/a855f7/ffffff?text=Scions" alt="Scions" class="unit-image"></td>
-            <td><strong>Tempestus Scions</strong></td>
-            <td>
-              <span>Infantry</span>
-              <span>Elite</span>
-            </td>
-            <td>85</td>
-            <td>5</td>
-            <td>2x Hot-shot Volley Gun</td>
-            <td>-</td>
-            <td><a class="btn" href="unit-detail.html">Details</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="content-section">
-      <h3>Vehicles (1 unit - 85 points)</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Unit Name</th>
-            <th>Tags</th>
-            <th>Points</th>
-            <th>Models</th>
-            <th>Wargear</th>
-            <th>Notes</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><img src="https://placehold.co/60x60/3b82f6/ffffff?text=Chimera" alt="Chimera" class="unit-image"></td>
-            <td><strong>Chimera "Steel Rain"</strong></td>
-            <td>
-              <span>Vehicle</span>
-              <span>Transport</span>
-            </td>
-            <td>85</td>
-            <td>1</td>
-            <td>Multi-laser, Heavy Bolter</td>
-            <td>Embarked: Squad Charlie (20 models)</td>
-            <td><a class="btn" href="unit-detail.html">Details</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="content-section">
-      <h3>Heavy Support (1 unit - 440 points)</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Unit Name</th>
-            <th>Tags</th>
-            <th>Points</th>
-            <th>Models</th>
-            <th>Wargear</th>
-            <th>Notes</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><img src="https://placehold.co/60x60/a855f7/ffffff?text=Russ" alt="Leman Russ" class="unit-image"></td>
-            <td><strong>Leman Russ Squadron</strong></td>
-            <td>
-              <span>Vehicle</span>
-              <span>Heavy Support</span>
-            </td>
-            <td>440</td>
-            <td>2</td>
-            <td>2x Battle Cannon, 4x Heavy Bolter</td>
-            <td>-</td>
-            <td><a class="btn" href="unit-detail.html">Details</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="content-section">
-      <h3>Point Breakdown</h3>
-      <div class="list-item-box">
-        <p><strong>Characters:</strong> 90 points</p>
-        <p><strong>Battleline:</strong> 330 points</p>
-        <p><strong>Vehicles:</strong> 85 points</p>
-        <p><strong>Heavy Support:</strong> 440 points</p>
-        <hr>
-        <p><strong>Total: 995 / 1000 points</strong></p>
+    <div id="error-message" style="display: none;">
+      <div class="alert alert-warning">
+        <p><strong>Error:</strong> <span id="error-text"></span></p>
+        <a class="btn" href="lists.html">Back to Lists</a>
       </div>
     </div>
   </main>
+
+  <script>
+    let currentList = null;
+    let currentFaction = null;
+    let currentDetachment = null;
+    let listUnits = [];
+    let unitsData = {}; // Map unit_id to unit data
+
+    // Get list ID from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const listId = urlParams.get('id');
+
+    // Load list data when page loads
+    window.addEventListener('DOMContentLoaded', async () => {
+      if (!listId) {
+        showError('No list ID provided');
+        return;
+      }
+      
+      await loadListDetails();
+    });
+
+    async function loadListDetails() {
+      try {
+        console.log('Loading list details for list ID:', listId);
+        
+        // Load list data
+        currentList = await getListById(listId);
+        console.log('Current list loaded:', currentList);
+        
+        if (!currentList) {
+          showError('List not found');
+          return;
+        }
+
+        // Load faction
+        if (currentList.faction_id) {
+          try {
+            currentFaction = await getFactionById(currentList.faction_id);
+            console.log('Faction loaded:', currentFaction);
+          } catch (error) {
+            console.error('Error loading faction:', error);
+          }
+        }
+
+        // Load detachment
+        if (currentList.detachment_id) {
+          try {
+            currentDetachment = await getDetachmentById(currentList.detachment_id);
+            console.log('Detachment loaded:', currentDetachment);
+          } catch (error) {
+            console.error('Error loading detachment:', error);
+          }
+        }
+
+        // Load list units
+        console.log('Loading list units for list:', listId);
+        listUnits = await getListUnits(listId) || [];
+        console.log('List units loaded:', listUnits);
+        console.log('Number of units:', listUnits.length);
+
+        // Load unit details for each list unit
+        const unitPromises = listUnits.map(async (listUnit) => {
+          try {
+            console.log('Loading unit data for unit_id:', listUnit.unit_id);
+            const unit = await getUnitById(listUnit.unit_id);
+            console.log('Unit loaded:', unit);
+            unitsData[listUnit.unit_id] = unit;
+          } catch (error) {
+            console.error(`Error loading unit ${listUnit.unit_id}:`, error);
+          }
+        });
+        
+        await Promise.all(unitPromises);
+        console.log('All units data loaded:', unitsData);
+
+        // Display everything
+        displayListHeader();
+        displayArmySummary();
+        displayArmyRules();
+        displayUnits();
+
+        // Show content, hide loading
+        document.getElementById('loading-message').style.display = 'none';
+        document.getElementById('list-content').style.display = 'block';
+
+      } catch (error) {
+        console.error('Error loading list details:', error);
+        showError('Failed to load list details');
+      }
+    }
+
+    function displayListHeader() {
+      document.getElementById('list-name').textContent = currentList.name || 'Unnamed List';
+      const factionName = currentFaction ? currentFaction.name : 'Unknown Faction';
+      document.getElementById('list-subtitle').textContent = `${factionName} Army List`;
+      
+      // Update edit link
+      document.getElementById('edit-list-link').href = `list-builder.html?id=${listId}`;
+    }
+
+    function displayArmySummary() {
+      document.getElementById('faction-name').textContent = currentFaction ? currentFaction.name : 'Unknown';
+      document.getElementById('detachment-name').textContent = currentDetachment ? currentDetachment.name : 'None';
+      document.getElementById('point-limit').textContent = `${currentList.point_limit || 0} pts`;
+      document.getElementById('current-points').textContent = `${currentList.current_points || 0} pts`;
+      document.getElementById('total-units').textContent = listUnits.length;
+      
+      const validText = currentList.is_valid ? '✓ Valid' : '✗ Invalid';
+      const validColor = currentList.is_valid ? 'green' : 'red';
+      document.getElementById('list-valid').innerHTML = `<span style="color: ${validColor};">${validText}</span>`;
+    }
+
+    function displayArmyRules() {
+      if (currentFaction) {
+        document.getElementById('army-rule-name').textContent = currentFaction.army_rule_name || 'No Army Rule';
+        document.getElementById('army-rule-description').textContent = currentFaction.army_rule_description || 'No description available.';
+      }
+
+      if (currentDetachment) {
+        document.getElementById('detachment-rule-name').textContent = currentDetachment.rule_name || 'Detachment Rule';
+        document.getElementById('detachment-rule-description').textContent = currentDetachment.rule_description || 'No description available.';
+        document.getElementById('detachment-rule-box').style.display = 'block';
+      }
+    }
+
+    function displayUnits() {
+      const container = document.getElementById('units-container');
+      
+      console.log('displayUnits called');
+      console.log('listUnits:', listUnits);
+      console.log('unitsData:', unitsData);
+      
+      if (!listUnits || listUnits.length === 0) {
+        console.log('No list units found, showing empty state');
+        container.innerHTML = `
+          <div class="empty-state">
+            <p>No units in this list yet.</p>
+            <a class="btn" href="list-builder.html?id=${listId}">Add Units</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Organize units by tags/type
+      const unitsByType = {
+        'Characters': [],
+        'Battleline': [],
+        'Other Infantry': [],
+        'Vehicles': [],
+        'Other': []
+      };
+
+      listUnits.forEach(listUnit => {
+        const unit = unitsData[listUnit.unit_id];
+        if (!unit) return;
+
+        const tags = unit.tags || [];
+        const unitInfo = { listUnit, unit };
+
+        if (tags.includes('Character')) {
+          unitsByType['Characters'].push(unitInfo);
+        } else if (tags.includes('Battleline')) {
+          unitsByType['Battleline'].push(unitInfo);
+        } else if (tags.includes('Infantry')) {
+          unitsByType['Other Infantry'].push(unitInfo);
+        } else if (tags.includes('Vehicle')) {
+          unitsByType['Vehicles'].push(unitInfo);
+        } else {
+          unitsByType['Other'].push(unitInfo);
+        }
+      });
+
+      let html = '';
+
+      // Display each category
+      Object.keys(unitsByType).forEach(category => {
+        const units = unitsByType[category];
+        if (units.length === 0) return;
+
+        html += `<h4>${category} (${units.length})</h4>`;
+        html += '<div class="table-container"><table><thead><tr>';
+        html += '<th>Image</th><th>Unit Name</th><th>Size</th><th>Points</th><th>Warlord</th><th>Actions</th>';
+        html += '</tr></thead><tbody>';
+
+        units.forEach(({ listUnit, unit }) => {
+          const displayName = listUnit.custom_name || unit.name;
+          const imageUrl = listUnit.custom_image_url || unit.image_url;
+          const warlordBadge = listUnit.is_warlord ? '<span style="color: gold;">★ Warlord</span>' : '';
+          const points = unit.base_cost + (unit.cost_per_model * (listUnit.quantity - unit.base_size));
+          
+          html += `<tr>
+            <td>${imageUrl ? `<img src="${imageUrl}" class="unit-image" alt="${displayName}">` : '-'}</td>
+            <td><strong>${displayName}</strong></td>
+            <td>${listUnit.quantity || unit.base_size} models</td>
+            <td>${points} pts</td>
+            <td>${warlordBadge}</td>
+            <td>
+              <a class="btn" href="unit-detail.html?id=${unit.unit_id}">View Unit</a>
+            </td>
+          </tr>`;
+        });
+
+        html += '</tbody></table></div>';
+      });
+
+      container.innerHTML = html;
+    }
+
+    function printList() {
+      window.print();
+    }
+
+    function showError(message) {
+      document.getElementById('loading-message').style.display = 'none';
+      document.getElementById('list-content').style.display = 'none';
+      document.getElementById('error-text').textContent = message;
+      document.getElementById('error-message').style.display = 'block';
+    }
+  </script>
+
+  <style>
+    /* Print styles */
+    @media print {
+      header, nav, .breadcrumb, .header-actions {
+        display: none;
+      }
+      
+      body {
+        background: white;
+      }
+      
+      .content-section {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+    }
+  </style>
 </body>
 </html>

@@ -19,58 +19,61 @@
       </ul>
     </nav>
   </header>
-
   <main>
-    <div class="center">
-      <h2 >Welcome to the Wargame List Builder</h2>
-      <p>Build, customize, and manage your tabletop army lists</p>
+    <!-- Welcome Section -->
+    <div class="center" style="margin: 2rem 0;">
+      <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Welcome to the Wargame List Builder</h2>
+      <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto;">Build, manage, and organize your tabletop wargaming army lists. Create factions, define units, and construct tournament-ready army lists with ease.</p>
     </div>
 
-    <div class="center-flex cards-container">
-      <!-- Factions Card -->
-      <div class="card">
-        <div class="card-header center">
-          <h3>Factions</h3>
-          <p>Manage your army factions</p>
+    <!-- Cards Container -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+      
+      <!-- Step 1: Factions Card -->
+      <div class="content-section">
+        <div style="text-align: center; border-bottom: 2px solid var(--bg-secondary); padding-bottom: 1rem; margin-bottom: 1rem;">
+          <h3 style="margin: 0;"><span style="color: var(--primary-teal); font-size: 1.5rem; font-weight: bold;">1.</span> Factions</h3>
+          <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Manage your army factions</p>
         </div>
-        <div class="card-body">
-          <p>Create and manage factions with their army rules, detachments, and special abilities. Define the core identity of your armies.</p>
+        <div style="margin-bottom: 1.5rem;">
+          <p style="color: var(--text-secondary); line-height: 1.6;">Create and manage factions with their army rules, detachments, and special abilities. Define the core identity of your armies.</p>
         </div>
-        <div class="card-footer center">
-            <a class="btn" href="./pages/factions.html">View Factions</a>
-            <a class="btn" href="./pages/create-faction.html">Create New</a>
+        <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+          <a class="btn" href="./pages/factions.html">View Factions</a>
+          <a class="btn" href="./pages/create-faction.html">Create New</a>
         </div>
       </div>
 
-      <!-- Units Card -->
-      <div class="card">
-        <div class="card-header center">
-          <h3>Units</h3>
-          <p>Browse all available units</p>
+      <!-- Step 2: Units Card -->
+      <div class="content-section">
+        <div style="text-align: center; border-bottom: 2px solid var(--bg-secondary); padding-bottom: 1rem; margin-bottom: 1rem;">
+          <h3 style="margin: 0;"><span style="color: var(--primary-teal); font-size: 1.5rem; font-weight: bold;">2.</span> Units</h3>
+          <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Browse all available units</p>
         </div>
-        <div class="card-body">
-          <p>View and create units with their stats, weapons, and abilities. Build your collection of warriors, vehicles, and heroes.</p>
+        <div style="margin-bottom: 1.5rem;">
+          <p style="color: var(--text-secondary); line-height: 1.6;">View and create units with their stats, weapons, and abilities. Build your collection of warriors, vehicles, and heroes.</p>
         </div>
-        <div class="card-footer center">
+        <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
           <a class="btn" href="./pages/units.html">View Units</a>
           <a class="btn" href="./pages/create-unit.html">Create New</a>
         </div>
       </div>
 
-      <!-- Army Lists Card -->
-      <div class="card">
-        <div class="card-header center">
-          <h3>Army Lists</h3>
-          <p>Build your battle-ready armies</p>
+      <!-- Step 3: Army Lists Card -->
+      <div class="content-section">
+        <div style="text-align: center; border-bottom: 2px solid var(--bg-secondary); padding-bottom: 1rem; margin-bottom: 1rem;">
+          <h3 style="margin: 0;"><span style="color: var(--primary-teal); font-size: 1.5rem; font-weight: bold;">3.</span> Army Lists</h3>
+          <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Build your battle-ready armies</p>
         </div>
-        <div class="card-body">
-          <p>Create army lists following point limits and composition rules. Save and manage multiple lists for different game sizes.</p>
+        <div style="margin-bottom: 1.5rem;">
+          <p style="color: var(--text-secondary); line-height: 1.6;">Create army lists following point limits and composition rules. Save and manage multiple lists for different game sizes.</p>
         </div>
-        <div class="card-footer center">
+        <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
           <a class="btn" href="./pages/lists.html">View Lists</a>
           <a class="btn" href="./pages/list-builder.html">Build New</a>
         </div>
       </div>
+
     </div>
   </main>
 </body>
